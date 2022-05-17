@@ -1,0 +1,27 @@
+[
+  {
+    "img": "/img/burger.png",
+    "title": "Sanduiches",
+    "slug": "sanduiches"
+  },
+  {
+    "img": "/img/combo.png",
+    "title": "Combo",
+    "slug": "combo"
+  },
+  {
+    "img": "/img/drink.png",
+    "title": "Bebidas",
+    "slug": "bebidas"
+  },
+  {
+    "img": "/img/pizza.png",
+    "title": "Pizza",
+    "slug": "pizza"
+  },
+  {
+    "img": "/img/pudding.png",
+    "title": "Sobremesa",
+    "slug": "sobremesa"
+  }
+]
