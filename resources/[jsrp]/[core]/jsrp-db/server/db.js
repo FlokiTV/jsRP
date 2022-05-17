@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
-const sequelize = new Sequelize("redeconceito04", "redeconceito04", "redeconceito04", {
-  host: "mysql.redeconceito.kinghost.net",
+const sequelize = new Sequelize("database", "username", "password", {
+  host: "mysql.host.com",
   dialect: "mysql",
   logging: false,
 });
