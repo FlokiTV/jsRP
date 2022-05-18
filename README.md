@@ -1,6 +1,6 @@
 # jsRP
 
-Javascript powered FiveM RolePlay Base
+Javascript powered FiveM RolePlay Base 🎮
 
 # Important
 
@@ -10,7 +10,7 @@ This framework is still under development and may demonstrate instabilities. Wai
 
 ### Windows
 
-1. [ Download server artifacts](https://runtime.fivem.net/artifacts/fivem/build_server_windows/)
+1. [Download server artifacts](https://runtime.fivem.net/artifacts/fivem/build_server_windows/)
 
 2. Create a folder for server (Ex: `C:/jsRP`)
 
