@@ -28,15 +28,19 @@ This framework is still under development and may demonstrate instabilities. Wai
 
 9. Setup your txAdmin account
 
-10. On `Deployment Type` select `Local Server Data` and put `C:/jsRP/server`
+10. rename `example.server.cfg` to `server.cfg` and [edit some infos](#configuration-steps)
 
-11. Finish txAdmin setup and start
+11. On `Deployment Type` select `Local Server Data` and put `C:/jsRP/server`
+
+12. Finish txAdmin setup and start
 
 ### Linux
 
-1. Download server artifacts https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/
+1. [Download server artifacts] (https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
 
 2. tar -xf fx.tar.xz
+
+3. [TODO]
 
 ## Configuration steps
 
