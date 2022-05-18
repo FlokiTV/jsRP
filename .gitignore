@@ -3,4 +3,5 @@ node_modules
 cache
 .yarn.installed
 yarn.lock
-resources/[test]
+resources/[dev]
+server.cfg
