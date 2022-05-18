@@ -36,6 +36,8 @@ This framework is still under development and may demonstrate instabilities. Wai
 
 1. Download server artifacts https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/
 
+2. tar -xf fx.tar.xz
+
 ## Configuration steps
 
 ### jsrp-db
