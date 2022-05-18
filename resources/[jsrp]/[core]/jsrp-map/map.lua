@@ -1,1 +1,1 @@
-spawnpoint 'a_m_y_skater_01' { x = 156, y = -985, z = 30 }
+spawnpoint 'mp_m_freemode_01' { x = 404, y = -978, z = -99 }

@@ -46,6 +46,14 @@ RegisterCommand("tp", (source, arguments, raw) => {
   }
 });
 
+RegisterCommand("tpto", (source, arguments, raw) => {
+  let playerIdx = GetPlayerFromServerId(source);
+  let ped = GetPlayerPed(playerIdx);
+  let [x, y, z] = arguments;
+  log("[tp]", `${x}, ${y}, ${z}`);
+  SetEntityCoords(ped, parseFloat(x), parseFloat(y), parseFloat(z));
+});
+
 RegisterCommand("coords", (source, arguments, raw) => {
   let playerIdx = GetPlayerFromServerId(source);
   let ped = GetPlayerPed(playerIdx);

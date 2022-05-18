@@ -8,9 +8,14 @@ const io = new Server(httpServer, {
   /* options */
 });
 
+exports("log", (log) => {
+  io.emit("log", log);
+});
+
 io.on("connection", (socket) => {
-  console.log("[jsrp:ws]", socket);
+  console.log("[jsrp:ws] new socket " + socket.id);
 });
 
 console.log("[jsrp:ws] listening on port " + PORT);
+
 httpServer.listen(PORT);

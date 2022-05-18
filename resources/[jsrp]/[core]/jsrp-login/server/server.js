@@ -19,17 +19,22 @@ const parseIds = (player) => {
 //   console.log(ped);
 //   if (user) SetEntityCoords(ped, user.x, user.y, user.z);
 // });
-
-onNet("jsrp:playerSpawned", async (spawn) => {
-  const player = global.source;
-  let ped = GetPlayerPed(player);
+const setPlayerLastPosition = async (player) => {
+  const ped = GetPlayerPed(player);
   const ids = parseIds(player);
   const userId = await DB.getUserByLicense(ids.license);
-  console.log("jsrp:playerSpawned", GetPlayerName(player));
-  let user = await DB.getUser(userId);
-  console.log(user.x, user.y, user.z);
-  if (user) SetEntityCoords(ped, user.x, user.y, user.z);
-});
+  const user = await DB.getUser(userId);
+  console.log("jsrp-login:setPlayerLastPosition", GetPlayerName(player));
+  let check = user.x != 0 && user.y != 0 && user.z != 0; //prevent empty location
+  if ((user, check)) SetEntityCoords(ped, user.x, user.y, user.z);
+};
+
+exports("setPlayerLastPosition", setPlayerLastPosition);
+
+// onNet("jsrp:playerSpawned", async (spawn) => {
+//   const player = global.source;
+//   setPlayerLastPosition(player);
+// });
 
 on("playerConnecting", (name, setKickReason, deferrals) => {
   deferrals.defer();
@@ -64,7 +69,6 @@ on("playerDropped", async (reason) => {
   const ped = GetPlayerPed(global.source);
   const [playerX, playerY, playerZ] = GetEntityCoords(ped);
   console.log(`Player ${GetPlayerName(global.source)} dropped (Reason: ${reason}).`);
-  console.log(ids);
   const userId = await DB.getUserByLicense(ids.license);
   console.log("getUserByLicense", userId);
   if (userId) {
@@ -72,7 +76,7 @@ on("playerDropped", async (reason) => {
     let pos = await DB.updateUserPos(userId, {
       x: playerX,
       y: playerY,
-      z: playerZ + 2,
+      z: playerZ + 0.5,
     });
     console.log("updateUserPos");
     console.log(pos);
