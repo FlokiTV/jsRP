@@ -5,3 +5,4 @@ cache
 yarn.lock
 resources/[dev]
 server.cfg
+server.cfg.bkp

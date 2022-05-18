@@ -42,16 +42,13 @@ This framework is still under development and may demonstrate instabilities. Wai
 
 ### jsrp-db
 
-`resources\[jsrp]\[core]\jsrp-db\server\db.js`
+`server.cfg`
 
-Configure MySQL database
-
-```js
-const sequelize = new Sequelize("database", "username", "password", {
-  host: "mysql.host.com",
-  dialect: "mysql",
-  logging: false,
-});
+```lua
+setr jsrp-db:host "mysql.host.net"
+setr jsrp-db:database "database"
+setr jsrp-db:username "username"
+setr jsrp-db:password "password"
 ```
 
 You can disable jsrp-db and jsrp-login to start without database

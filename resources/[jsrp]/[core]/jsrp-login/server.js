@@ -27,7 +27,7 @@ onNet("jsrp:playerSpawned", async (spawn) => {
   const userId = await DB.getUserByLicense(ids.license);
   console.log("jsrp:playerSpawned", GetPlayerName(player));
   let user = await DB.getUser(userId);
-  console.log(ped);
+  console.log(user.x, user.y, user.z);
   if (user) SetEntityCoords(ped, user.x, user.y, user.z);
 });
 

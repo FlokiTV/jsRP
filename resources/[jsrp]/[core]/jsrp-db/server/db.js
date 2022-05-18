@@ -1,7 +1,12 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
-const sequelize = new Sequelize("database", "username", "password", {
-  host: "mysql.host.com",
+const HOST = GetConvar("jsrp-db:host", "localhost");
+const DATABASE = GetConvar("jsrp-db:database", "jsRP");
+const USERNAME = GetConvar("jsrp-db:username", "root");
+const PASSWORD = GetConvar("jsrp-db:password", "");
+
+const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
+  host: HOST,
   dialect: "mysql",
   logging: false,
 });
@@ -60,8 +65,22 @@ const init = async () => {
 
 init();
 
-exports("model", (key, cb) => {
-  return cb(jsrp[key]);
+exports("define", async (table, model) => {
+  let cfg = {};
+  Object.keys(model).forEach((col) => {
+    cfg[col] = model[col];
+    cfg[col].type = DataTypes[cfg[col].type];
+  });
+
+  jsrp[table] = sequelize.define(table, {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    ...cfg,
+  });
+  await jsrp[table].sync({ force: true });
 });
 
 exports("db", () => {
