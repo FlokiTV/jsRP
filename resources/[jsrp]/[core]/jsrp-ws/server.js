@@ -9,7 +9,19 @@ const io = new Server(httpServer, {
 });
 
 exports("log", (log) => {
-  io.emit("log", log);
+  io.emit("log", "[S] " + log);
+});
+
+exports("prettylog", (from, modl, log) => {
+  io.emit("prettylog", from, modl, log);
+});
+
+onNet("jsrp:ws:prettylog", (from, modl, log) => {
+  io.emit("prettylog", from, modl, log);
+});
+
+onNet("jsrp:ws:log", (log) => {
+  io.emit("log", "[C] " + log);
 });
 
 io.on("connection", (socket) => {

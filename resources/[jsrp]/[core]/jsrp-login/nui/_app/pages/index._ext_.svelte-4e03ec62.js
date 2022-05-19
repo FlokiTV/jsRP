@@ -1,0 +1,1 @@
+import{S as o,i as s,s as e,w as a}from"../chunks/index-22a4e44d.js";import{g as r}from"../chunks/navigation-13fd7038.js";import"../chunks/singletons-d1fb5791.js";function u(t){return a(()=>{r("/nui/")}),[]}class m extends o{constructor(n){super(),s(this,n,u,null,e,{})}}export{m as default};

@@ -1,7 +1,13 @@
 {
+  "scripts": {
+    "log": "node jsrp-console.mjs"
+  },
   "devDependencies": {
     "@citizenfx/client": "^2.0.5592-1",
     "@citizenfx/server": "^2.0.5593-1",
     "socket.io-client": "^4.5.1"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1"
   }
 }

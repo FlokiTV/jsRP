@@ -8,5 +8,7 @@ version "1.0.0"
 dependency "yarn"
 
 server_script {
-    "server/*.js",
+    "server/_init.js",
+    "server/modules/*.js",
+    "server/db.js",
 }

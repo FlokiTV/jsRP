@@ -3,18 +3,18 @@
     "components": [
       { "component_id": 0, "drawable": 0, "texture": 0 },
       { "component_id": 1, "drawable": 0, "texture": 0 },
-      { "component_id": 2, "drawable": 11, "texture": 0 },
+      { "component_id": 2, "drawable": 0, "texture": 0 },
       { "component_id": 5, "drawable": 0, "texture": 0 },
       { "component_id": 7, "drawable": 0, "texture": 0 },
-      { "component_id": 10, "drawable": 0, "texture": 0 },
-      { "component_id": 3, "drawable": 0, "texture": 0 },
-      { "component_id": 4, "drawable": 27, "texture": 0 },
       { "component_id": 9, "drawable": 0, "texture": 0 },
-      { "component_id": 8, "drawable": 2, "texture": 0 },
-      { "component_id": 11, "drawable": 141, "texture": 0 },
-      { "component_id": 6, "drawable": 1, "texture": 1 }
+      { "component_id": 8, "drawable": 15, "texture": 0 },
+      { "component_id": 4, "drawable": 105, "texture": 0 },
+      { "component_id": 3, "drawable": 0, "texture": 0 },
+      { "component_id": 6, "drawable": 25, "texture": 0 },
+      { "component_id": 10, "drawable": 0, "texture": 0 },
+      { "component_id": 11, "drawable": 22, "texture": 0 }
     ],
-    "eyeColor": 1,
+    "eyeColor": 0,
     "faceFeatures": {
       "cheeksBoneHigh": 0,
       "cheeksBoneWidth": 0,
@@ -37,8 +37,8 @@
       "nosePeakSize": 0,
       "noseWidth": 0
     },
-    "hair": { "color": 61, "highlight": 62, "style": 11 },
-    "headBlend": { "shapeFirst": 45, "shapeMix": 0.6, "shapeSecond": 6, "skinFirst": 0, "skinMix": 0, "skinSecond": 0 },
+    "hair": { "color": 61, "highlight": 62, "style": 10 },
+    "headBlend": { "shapeFirst": 0, "shapeMix": 0, "shapeSecond": 0, "skinFirst": 0, "skinMix": 0, "skinSecond": 0 },
     "headOverlays": {
       "ageing": { "color": 0, "opacity": 0, "style": 0 },
       "beard": { "color": 0, "opacity": 0, "style": 0 },
@@ -48,7 +48,7 @@
       "chestHair": { "color": 0, "opacity": 0, "style": 0 },
       "complexion": { "color": 0, "opacity": 0, "style": 0 },
       "eyebrows": { "color": 0, "opacity": 0, "style": 0 },
-      "lipstick": { "color": 0, "opacity": 0.3, "style": 0 },
+      "lipstick": { "color": 0, "opacity": 0, "style": 0 },
       "makeUp": { "color": 0, "opacity": 0, "style": 0 },
       "moleAndFreckles": { "color": 0, "opacity": 0, "style": 0 },
       "sunDamage": { "color": 0, "opacity": 0, "style": 0 }
