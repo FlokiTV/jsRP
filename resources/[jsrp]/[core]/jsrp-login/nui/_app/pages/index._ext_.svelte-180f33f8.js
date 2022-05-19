@@ -1,0 +1,1 @@
+import{S as e,i as n,s as o,w as a}from"../chunks/index-22a4e44d.js";import{s as u,g as r}from"../chunks/jsrp-nui-67fe20ee.js";import"../chunks/singletons-d1fb5791.js";function i(t){return a(()=>{u(),r("/nui/")}),[]}class m extends e{constructor(s){super(),n(this,s,i,null,o,{})}}export{m as default};
