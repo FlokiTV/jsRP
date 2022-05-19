@@ -94,7 +94,15 @@ const fn = {
       ...data,
       appearance: JSON.stringify(tempAppearance),
     });
-    UI_GOTO("/welcome");
+
+    /*
+      To-do: create a new welcome page
+    */
+
+    // UI_GOTO("/welcome");
+    SetEntityCoords(GetPlayerPed(-1), spawnLocations.safe.x, spawnLocations.safe.y, spawnLocations.safe.z);
+    loginNui = false;
+    UI_SET(loginNui);
   },
   spawn: (data, cb) => {
     nuilog("spawn");
