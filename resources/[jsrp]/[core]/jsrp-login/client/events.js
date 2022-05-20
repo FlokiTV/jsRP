@@ -8,6 +8,7 @@ on("playerSpawned", async (spawn) => {
   prettylog("[jsrp:playerSpawned] event trigger");
   emitNet("jsrp:playerSpawned", spawn);
   emit("jsrp:playerSpawned", spawn);
+  SetEntityVisible(PlayerPedId(), false);
 });
 
 on("playerDropped", async () => {
