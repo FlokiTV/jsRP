@@ -56,3 +56,11 @@ setr jsrp-db:password "password"
 ```
 
 You can disable jsrp-db and jsrp-login to start without database
+
+### jsrp-ws
+
+`server.cfg`
+
+```lua
+setr jsrp-ws:port 30130
+```

@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import io from "socket.io-client";
-let url = "http://painel.saturno-2287.ga:30130"; //"http://localhost:30130"
+// let url = "http://painel.saturno-2287.ga:30130";
+let url = "http://localhost:30130";
 const socket = io.connect(url, { reconnect: true });
 
 const getFromColor = (from) => {
