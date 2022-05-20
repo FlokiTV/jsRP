@@ -2,13 +2,24 @@
 const DB = exports["jsrp-db"];
 const LOG = exports["jsrp-ws"].log;
 const root = GetResourcePath(GetCurrentResourceName());
-
-const log = (data) => {
-  LOG(`[${GetCurrentResourceName()}] ${JSON.stringify(data)}`);
+const WHUrl = {
+  spawn: GetConvar("jsrp-login:wh:spawn", ""),
 };
 
+const Webhook = (to, title, description, color = null) => {
+  if (WHUrl[to]) exports["jsrp-discord"].log(WHUrl[to], title, description, GetCurrentResourceName(), color);
+};
+
+// const log = (data) => {
+//   LOG(`[${GetCurrentResourceName()}] ${JSON.stringify(data)}`);
+// };
+
 const prettylog = (data) => {
-  exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
+  try {
+    exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
+  } catch (error) {
+    console.log(data);
+  }
 };
 
 const parseIds = (player) => {

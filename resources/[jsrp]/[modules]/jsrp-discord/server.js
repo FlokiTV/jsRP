@@ -8,18 +8,13 @@ const log = (data) => {
   }
 };
 
-log("[Exporting Module] Discord");
+const config = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+};
 
-exports("send", (webhook, embeds) => {
-  log("send");
-  let data = JSON.stringify({ embeds });
-  let config = {
-    method: "POST",
-    url: webhook,
-    headers: { "Content-Type": "application/json" },
-    data: data,
-  };
-  axios(config)
+const SEND = (cfg) => {
+  axios(cfg)
     .then((response) => {
       log("Webhook delivered successfully");
       return response;
@@ -28,4 +23,55 @@ exports("send", (webhook, embeds) => {
       log(error);
       return error;
     });
+};
+
+log("[Exporting Module] Discord");
+
+exports("send", (webhook, data) => {
+  log("send");
+  let cfg = {
+    ...config,
+    url: webhook,
+    data: JSON.stringify(data),
+  };
+  SEND(cfg);
+});
+
+exports("log", async (webhook, title, description, from, color) => {
+  log("log");
+  let c;
+  switch (color) {
+    case "error":
+      c = 15074822;
+      break;
+    case "success":
+      c = 2811398;
+      break;
+    case "info":
+      c = 15127558;
+      break;
+    default:
+      c = 426982;
+      break;
+  }
+  let data = {
+    content: null,
+    embeds: [
+      {
+        title,
+        description,
+        color: c,
+        footer: {
+          text: from,
+        },
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
+  let cfg = {
+    ...config,
+    url: webhook,
+    data: JSON.stringify(data),
+  };
+  SEND(cfg);
 });

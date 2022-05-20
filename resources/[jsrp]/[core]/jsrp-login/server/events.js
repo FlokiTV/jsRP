@@ -44,10 +44,12 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
     const userId = await DB.GetUserIdByLicense(ids.license);
     prettylog("[GetUserIdByLicense] " + userId);
     if (!userId) {
+      Webhook("spawn", "jsrp:playerConnecting", "Creating a new Player");
       prettylog("Creating a new user");
       const nId = await DB.CreateUser(name, ids);
       prettylog(nId);
     } else {
+      Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] ${GetPlayerName(player)}`);
       prettylog("Logged " + GetPlayerName(player) + " " + userId);
     }
     deferrals.done();

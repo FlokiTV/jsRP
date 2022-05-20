@@ -1,9 +1,9 @@
 /// <reference types="@citizenfx/client" />
 const AP = exports["fivem-appearance"];
 
-const log = (data) => {
-  emitNet("jsrp:ws:log", `[${GetCurrentResourceName()}] ${JSON.stringify(data)}`);
-};
+// const log = (data) => {
+//   emitNet("jsrp:ws:log", `[${GetCurrentResourceName()}] ${JSON.stringify(data)}`);
+// };
 
 const prettylog = (data) => {
   emitNet("jsrp:ws:prettylog", "c", GetCurrentResourceName(), JSON.stringify(data));
