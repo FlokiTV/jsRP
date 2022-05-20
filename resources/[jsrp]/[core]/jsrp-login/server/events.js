@@ -83,8 +83,11 @@ on("playerDropped", async (reason) => {
   }
 });
 
+/*
+  Update Last Position on Client
+*/
 on("jsrp:register:GetPlayerLastPosition", (player) => {
-  prettylog("setPlayerLastPosition " + player);
+  prettylog("GetPlayerLastPosition " + player);
   setPlayerLastPosition(player);
 });
 

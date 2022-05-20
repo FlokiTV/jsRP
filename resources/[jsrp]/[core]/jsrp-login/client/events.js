@@ -18,7 +18,15 @@ on("playerDropped", async () => {
 
 on("jsrp:playerSpawned", async (spawn) => {
   const player = global.source;
-  SetNuiFocus(true, true);
+  /*
+    Trigger only first spawn
+  */
+  if (CFG.firstSpawn) {
+    CFG.firstSpawn = false;
+    // SPAWN.setAutoSpawn(false);
+    SetNuiFocus(true, true);
+  }
+
   // SetDefaultPed(() => {
   //   log("jsrp-register:SetDefaultPed");
   //   emit("jsrp:login:setPlayerLastPosition", player);

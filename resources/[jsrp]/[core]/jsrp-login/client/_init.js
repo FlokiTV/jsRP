@@ -1,6 +1,9 @@
 /// <reference types="@citizenfx/client" />
 const AP = exports["fivem-appearance"];
-
+const SPAWN = exports.spawnmanager;
+const CFG = {
+  firstSpawn: true,
+};
 // const log = (data) => {
 //   emitNet("jsrp:ws:log", `[${GetCurrentResourceName()}] ${JSON.stringify(data)}`);
 // };

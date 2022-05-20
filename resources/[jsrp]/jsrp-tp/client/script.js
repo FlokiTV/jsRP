@@ -6,6 +6,10 @@ const log = (from, text, color = [255, 255, 255]) => {
   });
 };
 
+const prettylog = (data) => {
+  emitNet("jsrp:ws:prettylog", "c", GetCurrentResourceName(), JSON.stringify(data));
+};
+
 onNet("jsex:addMessage", (opts) => {
   console.log("jsex:addMessage");
   TriggerEvent("chat:addMessage", opts);
@@ -58,7 +62,7 @@ RegisterCommand("coords", (source, arguments, raw) => {
   let playerIdx = GetPlayerFromServerId(source);
   let ped = GetPlayerPed(playerIdx);
   let coords = GetEntityCoords(ped);
-  log("[coords] x", coords[0], [255, 0, 0]);
-  log("[coords] y", coords[1], [0, 255, 0]);
-  log("[coords] z", coords[2], [0, 0, 255]);
+  prettylog("coords");
+  prettylog(coords);
+  prettylog(GetEntityHeading(ped));
 });
