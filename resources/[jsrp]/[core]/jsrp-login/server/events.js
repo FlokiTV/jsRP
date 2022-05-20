@@ -21,6 +21,7 @@ onNet("jsrp:playerSpawned", async (spawn) => {
     emitNet("jsrp-register:SetAppearance", player, JSON.parse(register.appearance));
     emitNet("jsrp-register:goto", player, "/welcome");
   }
+  SetEntityVisible(PlayerPedId(), false);
   setPlayerLastPosition(player);
 });
 

@@ -44,3 +44,7 @@ const SetDefaultPed = (onPedLoad) => {
     }
   }, 50);
 };
+
+setTick(() => {
+  SetEntityLocallyVisible(PlayerPedId());
+});

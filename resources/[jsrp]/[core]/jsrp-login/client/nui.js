@@ -108,6 +108,7 @@ const fn = {
     nuilog("spawn");
     cb({ status: "OK" });
     nuilog(spawnLocations);
+    SetEntityVisible(PlayerPedId(), true);
     SetEntityCoords(GetPlayerPed(-1), spawnLocations[data].x, spawnLocations[data].y, spawnLocations[data].z);
     loginNui = false;
     UI_SET(loginNui);
