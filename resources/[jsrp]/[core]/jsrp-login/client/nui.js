@@ -100,6 +100,7 @@ const fn = {
     */
 
     // UI_GOTO("/welcome");
+    SetEntityVisible(PlayerPedId(), true);
     SetEntityCoords(GetPlayerPed(-1), spawnLocations.safe.x, spawnLocations.safe.y, spawnLocations.safe.z);
     loginNui = false;
     UI_SET(loginNui);
