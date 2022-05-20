@@ -23,7 +23,7 @@ on("jsrp:playerSpawned", async (spawn) => {
   */
   if (CFG.firstSpawn) {
     CFG.firstSpawn = false;
-    // SPAWN.setAutoSpawn(false);
+    SPAWN.setAutoSpawn(false);
     SetNuiFocus(true, true);
   }
 
