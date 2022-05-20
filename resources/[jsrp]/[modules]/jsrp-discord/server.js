@@ -1,8 +1,17 @@
 const axios = require("axios");
-console.log("[jsrp] [Exporting Module] Discord");
 
-exports("discord_send_embeds", (webhook, embeds) => {
-  console.log("[send_embeds]");
+const log = (data) => {
+  try {
+    exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
+  } catch (error) {
+    console.log(data);
+  }
+};
+
+log("[Exporting Module] Discord");
+
+exports("send", (webhook, embeds) => {
+  log("send");
   let data = JSON.stringify({ embeds });
   let config = {
     method: "POST",
@@ -12,11 +21,11 @@ exports("discord_send_embeds", (webhook, embeds) => {
   };
   axios(config)
     .then((response) => {
-      console.log("Webhook delivered successfully");
+      log("Webhook delivered successfully");
       return response;
     })
     .catch((error) => {
-      console.log(error);
+      log(error);
       return error;
     });
 });
