@@ -5,8 +5,8 @@ author 'FlokiTV'
 description "jsRP Login"
 version '1.0.0'
 
-ui_page 'nui/index.html' 
--- ui_page 'http://localhost:3000/nui' 
+-- ui_page 'nui/index.html' 
+ui_page 'http://localhost:3000/nui' 
 
 files {
     "nui/**.js",

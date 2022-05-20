@@ -1,0 +1,15 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+body{
+    transition: all .5s;
+    opacity: 0;
+}
+.np{
+    pointer-events: none;
+    user-select: none;
+}

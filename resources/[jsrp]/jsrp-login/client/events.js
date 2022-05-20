@@ -8,7 +8,6 @@ on("playerSpawned", async (spawn) => {
   prettylog("[jsrp:playerSpawned] event trigger");
   emitNet("jsrp:playerSpawned", spawn);
   emit("jsrp:playerSpawned", spawn);
-  SetEntityVisible(PlayerPedId(), false);
 });
 
 on("playerDropped", async () => {
@@ -18,6 +17,7 @@ on("playerDropped", async () => {
 
 on("jsrp:playerSpawned", async (spawn) => {
   const player = global.source;
+  SetEntityVisible(PlayerPedId(), false);
   /*
     Trigger only first spawn
   */

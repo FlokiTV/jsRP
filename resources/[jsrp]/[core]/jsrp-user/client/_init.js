@@ -27,7 +27,6 @@ const msToTime = (duration) => {
 
 setImmediate(() => {
   prettylog("resource loaded");
-  SPAWN.addSpawnPoint({});
 });
 
 setTick(() => {
