@@ -1,3 +1,4 @@
+/// <reference types="@citizenfx/client" />
 const SPAWN = exports.spawnmanager;
 
 const CFG = {
@@ -5,7 +6,12 @@ const CFG = {
   visibleLocal: true,
   deadTime: 1000 * 10,
   diedAt: 0,
-  spawn: [162.63803100585938, -987.2031860351562, 30.091930389404297, 160],
+  spawn: {
+    x: 162.63803100585938,
+    y: -987.2031860351562,
+    z: 30.091930389404297,
+    h: 160,
+  },
 };
 
 const prettylog = (data) => {
@@ -24,28 +30,40 @@ const msToTime = (duration) => {
 
   return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
 };
+exports("msToTime", msToTime);
+
+const SetDefaultPed = (onPedLoad) => {
+  let model = GetHashKey("mp_m_freemode_01");
+  RequestModel(model);
+  let load = setInterval(() => {
+    if (HasModelLoaded(model)) {
+      SetPlayerModel(PlayerId(), model);
+      SetPedDefaultComponentVariation(PlayerPedId());
+      SetModelAsNoLongerNeeded(model);
+      clearInterval(load);
+      onPedLoad();
+    }
+  }, 50);
+};
+exports("SetDefaultPed", SetDefaultPed);
+
+const SpawnToLocation = (spawn = false) => {
+  let coords = GetEntityCoords(PlayerPedId(), true);
+  let ped = PlayerPedId();
+  NetworkResurrectLocalPlayer(coords, true, true, false);
+  SetPlayerInvincible(PlayerPedId(), false);
+  ClearPedBloodDamage(PlayerPedId());
+  SetEntityCoords(PlayerPedId(), spawn.x, spawn.y, spawn.z);
+  ClearPedTasksImmediately(ped);
+  SetEntityHeading(PlayerPedId(), spawn.h);
+  // SetEntityHealth(ped, 300);
+  RemoveAllPedWeapons(ped);
+  // SetFollowPedCamViewMode(4);
+  // CamRestoreJumpcut(GetGameCam());
+  ClearPlayerWantedLevel(PlayerId());
+};
+exports("SpawnToLocation", SpawnToLocation);
 
 setImmediate(() => {
   prettylog("resource loaded");
-});
-
-setTick(() => {
-  let playerPed = PlayerPedId();
-  if (IsEntityDead(playerPed)) {
-    if (!CFG.diedAt) {
-      CFG.diedAt = GetGameTimer();
-    } else {
-      let deadTime = GetGameTimer() - CFG.diedAt;
-      setImmediate(() => {
-        prettylog(msToTime(deadTime) + " " + msToTime(CFG.deadTime));
-      });
-      if (deadTime >= CFG.deadTime) {
-        prettylog("trigger DeadRespawn");
-        SPAWN.spawnPlayer();
-      }
-    }
-  } else {
-    if (CFG.diedAt > 0) prettylog("reseting diedAt");
-    CFG.diedAt = 0;
-  }
 });

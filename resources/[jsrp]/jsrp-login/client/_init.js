@@ -1,5 +1,6 @@
 /// <reference types="@citizenfx/client" />
 const AP = exports["fivem-appearance"];
+const jsRP = exports["jsrp-user"];
 const SPAWN = exports.spawnmanager;
 const CFG = {
   firstSpawn: true,
