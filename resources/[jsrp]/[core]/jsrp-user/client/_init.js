@@ -4,12 +4,12 @@ const SPAWN = exports.spawnmanager;
 const CFG = {
   visible: true,
   visibleLocal: true,
-  deadTime: 1000 * 10,
+  deadTime: 1000 * 60 * 1, //1 minute
   diedAt: 0,
   spawn: {
-    x: 162.63803100585938,
-    y: -987.2031860351562,
-    z: 30.091930389404297,
+    x: 162,
+    y: -987,
+    z: 30,
     h: 160,
   },
 };
@@ -19,7 +19,7 @@ const prettylog = (data) => {
 };
 
 const msToTime = (duration) => {
-  var milliseconds = Math.floor((duration % 1000) / 100),
+  let milliseconds = Math.floor((duration % 1000) / 100),
     seconds = Math.floor((duration / 1000) % 60),
     minutes = Math.floor((duration / (1000 * 60)) % 60),
     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
@@ -28,7 +28,7 @@ const msToTime = (duration) => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-  return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  return hours + ":" + minutes + ":" + seconds; // + "." + milliseconds;
 };
 exports("msToTime", msToTime);
 

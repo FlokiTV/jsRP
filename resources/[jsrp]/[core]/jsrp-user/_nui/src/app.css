@@ -7,7 +7,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-app
 
 body{
     transition: all .5s;
-    opacity: 0;
+    opacity: 1;
 }
 .np{
     pointer-events: none;

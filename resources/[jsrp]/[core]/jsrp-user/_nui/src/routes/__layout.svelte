@@ -5,12 +5,11 @@
 
   onMount(() => {
     setup({
-      updateSpawn: (list: any) => {
-        console.log(list);
-        localStorage.setItem("spawnList", JSON.stringify(list));
+      updateDead: (time: any) => {
+        localStorage.setItem("updateDead", time);
       },
     });
-    console.log("jsrp-nui:setup");
+    console.log("jsrp-user:setup");
   });
 </script>
 
