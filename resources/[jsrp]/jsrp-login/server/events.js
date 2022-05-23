@@ -41,14 +41,17 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
       prettylog("Erro ao obter licença do FiveM.");
       deferrals.done("Erro ao obter licença do FiveM.");
     }
+    /*
+      Check user on Database
+    */
     const userId = await DB.GetUserIdByLicense(ids.license);
-    prettylog("[GetUserIdByLicense] " + userId);
     if (!userId) {
-      Webhook("spawn", "jsrp:playerConnecting", "Creating a new Player");
-      prettylog("Creating a new user");
+      prettylog(`Creating a new user ${name}`);
+      Webhook("spawn", "jsrp:playerConnecting", `Creating a new Player ${name}`);
       const nId = await DB.CreateUser(name, ids);
       prettylog(nId);
     } else {
+      prettylog("[GetUserIdByLicense] " + userId);
       Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] ${GetPlayerName(player)}`);
       prettylog("Logged " + GetPlayerName(player) + " " + userId);
     }
