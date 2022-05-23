@@ -1,32 +1,41 @@
 setTick(() => {
   let playerPed = PlayerPedId();
+  let spawned = IsEntityVisible(playerPed); // check if player is already on the world
+
   // setImmediate(() => {
   //   emitNet("IsEntityDead");
   // });
-  if (IsEntityDead(playerPed)) {
-    //trigger dead
-    if (!CFG.diedAt) {
-      CFG.diedAt = GetGameTimer();
-      UI_GOTO("/dead");
-      SetNuiFocus(true, false);
-    } else {
-      let deadTime = GetGameTimer() - CFG.diedAt;
-      setImmediate(() => {
-        SendNUIMessage({
-          updateDead: msToTime(CFG.deadTime - deadTime),
-        });
-      });
-      if (deadTime >= CFG.deadTime) {
-        prettylog("trigger DeadRespawn");
-        SpawnToLocation(CFG.spawn);
-        UI_GOTO("/");
-        SetNuiFocus(false, false);
+
+  // send on next game tick
+  if (!spawned)
+    setImmediate(() => {
+      if (IsEntityDead(playerPed)) {
+        //trigger dead
+        if (!CFG.diedAt) {
+          CFG.diedAt = GetGameTimer();
+          UI_GOTO("/dead");
+          SetNuiFocus(true, false);
+        } else {
+          let deadTime = GetGameTimer() - CFG.diedAt;
+          let resTime = msToTime(CFG.deadTime - deadTime);
+          SendNUIMessage({
+            updateDead: resTime,
+          });
+          if (deadTime >= CFG.deadTime) {
+            prettylog("trigger DeadRespawn");
+            SpawnToLocation(CFG.spawn);
+            UI_GOTO("/");
+            SetNuiFocus(false, false);
+          }
+        }
+      } else {
+        // trigger dead time
+        if (CFG.diedAt > 0) {
+          prettylog("reseting diedAt");
+          CFG.diedAt = 0;
+        }
       }
-    }
-  } else {
-    if (CFG.diedAt > 0) prettylog("reseting diedAt");
-    CFG.diedAt = 0;
-  }
+    });
 });
 
 // on("gameEventTriggered", (name, args) => {

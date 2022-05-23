@@ -1,6 +1,6 @@
 /// <reference types="@citizenfx/client" />
 const AP = exports["fivem-appearance"];
-const jsRP = exports["jsrp-user"];
+const USER = exports["jsrp-user"];
 const SPAWN = exports.spawnmanager;
 const CFG = {
   firstSpawn: true,
@@ -32,6 +32,7 @@ const spawnLocations = {
     x: 156,
     y: -985,
     z: 30,
+    h: 160,
   },
 };
 
@@ -48,6 +49,11 @@ const SetDefaultPed = (onPedLoad) => {
     }
   }, 50);
 };
+
+const isFirstSpawn = () => {
+  return CFG.firstSpawn;
+};
+exports("isFirstSpawn", isFirstSpawn);
 
 setTick(() => {
   SetEntityLocallyVisible(PlayerPedId());

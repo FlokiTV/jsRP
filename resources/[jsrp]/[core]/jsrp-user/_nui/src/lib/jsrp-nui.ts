@@ -60,7 +60,7 @@ export function setup(fn: any = {}) {
     }
     Object.keys(fn).forEach((ev) => {
       if (event.data[ev] != undefined) {
-        console.log("trigger " + ev);
+        // console.log("trigger " + ev);
         fn[ev](event.data[ev]);
       }
     });

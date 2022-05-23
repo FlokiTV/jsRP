@@ -55,7 +55,7 @@ const SpawnToLocation = (spawn = false) => {
   ClearPedBloodDamage(PlayerPedId());
   SetEntityCoords(PlayerPedId(), spawn.x, spawn.y, spawn.z);
   ClearPedTasksImmediately(ped);
-  SetEntityHeading(PlayerPedId(), spawn.h);
+  if (spawn.h) SetEntityHeading(PlayerPedId(), spawn.h);
   // SetEntityHealth(ped, 300);
   RemoveAllPedWeapons(ped);
   // SetFollowPedCamViewMode(4);
