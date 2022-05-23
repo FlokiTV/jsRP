@@ -9,6 +9,12 @@ modules.user = sequelize.define("jsrp-user", {
   name: {
     type: DataTypes.STRING,
   },
+  life: {
+    type: DataTypes.BIGINT,
+  },
+  dead: {
+    type: DataTypes.BIGINT,
+  },
   x: {
     type: DataTypes.BIGINT,
   },
@@ -22,7 +28,7 @@ modules.user = sequelize.define("jsrp-user", {
     type: DataTypes.STRING,
   },
 });
-
+//
 const GetUserIdByLicense = async (license) => {
   let userId = await modules.id.findAll({
     where: {

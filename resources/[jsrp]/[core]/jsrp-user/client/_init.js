@@ -30,7 +30,7 @@ const msToTime = (duration) => {
 
   return hours + ":" + minutes + ":" + seconds; // + "." + milliseconds;
 };
-exports("msToTime", msToTime);
+exports("MsToTime", msToTime);
 
 const SetDefaultPed = (onPedLoad) => {
   let model = GetHashKey("mp_m_freemode_01");

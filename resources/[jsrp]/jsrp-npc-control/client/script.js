@@ -6,7 +6,7 @@ const config = {
   },
   peds: {
     density: 1,
-    random: [1, 0],
+    random: [1, 1],
   },
   boats: true,
   trucks: true,
