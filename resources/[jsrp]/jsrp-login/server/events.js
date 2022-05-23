@@ -37,7 +37,7 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
     prettylog("New connection: " + GetPlayerName(player));
     prettylog("Lisence: " + ids.license);
     // log(ids);
-    if (!ids.license) {
+    if (!ids.license || !ids.ip) {
       prettylog("Erro ao obter licença do FiveM.");
       deferrals.done("Erro ao obter licença do FiveM.");
     }

@@ -1,6 +1,8 @@
 setTick(() => {
   let playerPed = PlayerPedId();
-  emitNet("IsEntityDead");
+  // setImmediate(() => {
+  //   emitNet("IsEntityDead");
+  // });
   if (IsEntityDead(playerPed)) {
     //trigger dead
     if (!CFG.diedAt) {
@@ -27,20 +29,20 @@ setTick(() => {
   }
 });
 
-on("gameEventTriggered", (name, args) => {
-  console.log(`Game event ${name} ${args.join(", ")}`);
-  let victim = args[0];
-  let attacker = args[1];
-  // const isFatal = !!args[i++];
-  // const weaponHash = args[i++];
-  // i += 5; // skip 5 unknown values
-  // const isMelee = !!args[i++];
-  // const vehicleDamageTypeFlag = args[i++];
-  if (IsEntityAPed(victim)) {
-    let vPed = NetworkGetNetworkIdFromEntity(victim);
-    console.log(GetPlayerServerId(vPed));
-  }
-  console.log("Victim " + GetEntityMaxHealth(victim) + " " + GetEntityHealth(victim));
-  // console.log(GetEntityHealth(attacker));
-  console.log("---------");
-});
+// on("gameEventTriggered", (name, args) => {
+//   console.log(`Game event ${name} ${args.join(", ")}`);
+//   let victim = args[0];
+//   let attacker = args[1];
+//   // const isFatal = !!args[i++];
+//   // const weaponHash = args[i++];
+//   // i += 5; // skip 5 unknown values
+//   // const isMelee = !!args[i++];
+//   // const vehicleDamageTypeFlag = args[i++];
+//   if (IsEntityAPed(victim)) {
+//     let vPed = NetworkGetNetworkIdFromEntity(victim);
+//     console.log(GetPlayerServerId(vPed));
+//   }
+//   console.log("Victim " + GetEntityMaxHealth(victim) + " " + GetEntityHealth(victim));
+//   // console.log(GetEntityHealth(attacker));
+//   console.log("---------");
+// });

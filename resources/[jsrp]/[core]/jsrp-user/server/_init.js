@@ -14,5 +14,5 @@ onNet("IsEntityDead", async () => {
   let life = GetEntityHealth(GetPlayerPed(source));
   let ids = ParseIdentifiers(source);
   let player = await DB.GetUserIdByLicense(ids.lisence);
-  console.log(ids);
+  // console.log(ids);
 });
