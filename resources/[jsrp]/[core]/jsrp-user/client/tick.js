@@ -1,20 +1,18 @@
+/// <reference types="@citizenfx/client" />
+let ped = GetPlayerPed(-1);
+
 setTick(() => {
-  let playerPed = PlayerPedId();
-  let spawned = IsEntityVisible(playerPed); // check if player is already on the world
-
-  // setImmediate(() => {
-  //   emitNet("IsEntityDead");
-  // });
-
+  CFG.visible = IsEntityVisible(ped);
   // send on next game tick
-  if (!spawned)
-    setImmediate(() => {
-      if (IsEntityDead(playerPed)) {
+  setImmediate(async () => {
+    if (CFG.visible)
+      if (IsEntityDead(ped)) {
         //trigger dead
         if (!CFG.diedAt) {
           CFG.diedAt = GetGameTimer();
           UI_GOTO("/dead");
           SetNuiFocus(true, false);
+          emit("jsrp-user:SetEntityDead");
         } else {
           let deadTime = GetGameTimer() - CFG.diedAt;
           let resTime = msToTime(CFG.deadTime - deadTime);
@@ -35,7 +33,7 @@ setTick(() => {
           CFG.diedAt = 0;
         }
       }
-    });
+  });
 });
 
 // on("gameEventTriggered", (name, args) => {

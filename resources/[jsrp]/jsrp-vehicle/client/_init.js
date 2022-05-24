@@ -1,5 +1,4 @@
 /// <reference types="@citizenfx/client" />
-
 let seatbeltOn = false;
 
 const checkSeatbelt = (ped, veh, beltSpeed) => {

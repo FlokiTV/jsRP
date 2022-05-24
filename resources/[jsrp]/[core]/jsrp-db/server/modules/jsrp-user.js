@@ -24,6 +24,9 @@ modules.user = sequelize.define("jsrp-user", {
   z: {
     type: DataTypes.BIGINT,
   },
+  h: {
+    type: DataTypes.BIGINT,
+  },
   ip: {
     type: DataTypes.STRING,
   },
@@ -80,3 +83,17 @@ const UpdateUserPosition = async (id, pos) => {
   });
 };
 exports("UpdateUserPosition", UpdateUserPosition);
+
+const SetUserDead = async (id, dead) => {
+  return await modules.user.update(
+    {
+      dead,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+};
+exports("SetUserDead", SetUserDead);

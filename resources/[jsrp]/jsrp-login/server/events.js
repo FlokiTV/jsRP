@@ -67,11 +67,16 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
   }, 0);
 });
 
+/*
+  Disconnect
+*/
+
 on("playerDropped", async (reason) => {
   const player = global.source;
   const ids = parseIds(player);
   const ped = GetPlayerPed(global.source);
   const [playerX, playerY, playerZ] = GetEntityCoords(ped);
+  const heading = GetEntityHeading(ped);
   prettylog(`Player ${GetPlayerName(global.source)} dropped (Reason: ${reason}).`);
   const userId = await DB.GetUserIdByLicense(ids.license);
   prettylog("GetUserIdByLicense " + userId);
@@ -81,6 +86,7 @@ on("playerDropped", async (reason) => {
       x: playerX,
       y: playerY,
       z: playerZ + 0.5,
+      h: heading,
     });
     prettylog(pos);
   }

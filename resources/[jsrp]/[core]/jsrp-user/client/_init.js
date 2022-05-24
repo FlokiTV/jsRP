@@ -2,7 +2,7 @@
 const SPAWN = exports.spawnmanager;
 
 const CFG = {
-  visible: true,
+  visible: false,
   visibleLocal: true,
   deadTime: 1000 * 60 * 1, //1 minute
   diedAt: 0,
