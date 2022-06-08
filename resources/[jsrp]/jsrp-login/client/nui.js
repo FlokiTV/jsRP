@@ -29,7 +29,7 @@ const UI_GOTO = (path) => {
   });
 };
 
-RegisterCommand("nui:register:goto", (source, args) => {
+RegisterCommand("jsrp-login:goto", (source, args) => {
   const [path] = args;
   nuilog("[gotoNui] " + path);
   UI_GOTO(path);
@@ -47,7 +47,7 @@ onNet("jsrp-register:closeNui", (source) => {
   UI_SET(loginNui);
 });
 
-RegisterCommand("nui:register", (source, args) => {
+RegisterCommand("jsrp-login", (source, args) => {
   nuilog("[nui] " + source);
   loginNui = !loginNui;
   UI_SET(loginNui);

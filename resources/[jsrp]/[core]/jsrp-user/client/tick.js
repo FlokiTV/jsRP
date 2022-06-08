@@ -1,39 +1,39 @@
 /// <reference types="@citizenfx/client" />
-let ped = GetPlayerPed(-1);
 
 setTick(() => {
-  CFG.visible = IsEntityVisible(ped);
+  let ped = GetPlayerPed(-1);
+  CFG.visible = IsEntityVisible(ped) ? true : false;
   // send on next game tick
-  setImmediate(async () => {
-    if (CFG.visible)
-      if (IsEntityDead(ped)) {
-        //trigger dead
-        if (!CFG.diedAt) {
-          CFG.diedAt = GetGameTimer();
-          UI_GOTO("/dead");
-          SetNuiFocus(true, false);
-          emit("jsrp-user:SetEntityDead");
-        } else {
-          let deadTime = GetGameTimer() - CFG.diedAt;
-          let resTime = msToTime(CFG.deadTime - deadTime);
-          SendNUIMessage({
-            updateDead: resTime,
-          });
-          if (deadTime >= CFG.deadTime) {
-            prettylog("trigger DeadRespawn");
-            SpawnToLocation(CFG.spawn);
-            UI_GOTO("/");
-            SetNuiFocus(false, false);
-          }
-        }
+  // setImmediate(async () => {
+  if (CFG.spawned)
+    if (IsEntityDead(ped)) {
+      //trigger dead
+      if (!CFG.diedAt) {
+        CFG.diedAt = GetGameTimer();
+        UI_GOTO("/dead");
+        SetNuiFocus(true, false);
+        emit("jsrp-user:SetEntityDead");
       } else {
-        // trigger dead time
-        if (CFG.diedAt > 0) {
-          prettylog("reseting diedAt");
-          CFG.diedAt = 0;
+        let deadTime = GetGameTimer() - CFG.diedAt;
+        let resTime = msToTime(CFG.deadTime - deadTime);
+        SendNUIMessage({
+          updateDead: resTime,
+        });
+        if (deadTime >= CFG.deadTime) {
+          prettylog("trigger DeadRespawn");
+          jsRP.SpawnToLocation(CFG.spawn);
+          UI_GOTO("/");
+          SetNuiFocus(false, false);
         }
       }
-  });
+    } else {
+      // trigger dead time
+      if (CFG.diedAt > 0) {
+        prettylog("reseting diedAt");
+        CFG.diedAt = 0;
+      }
+    }
+  // });
 });
 
 // on("gameEventTriggered", (name, args) => {

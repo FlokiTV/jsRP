@@ -1,39 +1,38 @@
-const init = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-  await sequelize.sync({ force: false });
-  console.log("All models were synchronized successfully.");
+/*
+  Define and sync a new table model
+  https://sequelize.org/docs/v6/core-concepts/model-basics/#data-types
+*/
+exports("define", async (table, model) => {
+  let cfg = {
+    // add a row id as primary key by default
+    id: {
+      type: getDataType("integer"),
+      autoIncrement: true,
+      primaryKey: true,
+    },
+  };
+  // Process model types
+  Object.keys(model).forEach((col) => {
+    let temp = { ...model[col] };
+    type = getDataType(temp.type);
+    temp.type = type;
+    cfg[col] = { ...temp };
+  });
+  CFG.modules[table] = await sequelize.define(table, cfg);
+  await CFG.modules[table].sync({ force: false }); // sync table with databse
+});
+
+const Query = async (query) => {
+  prettylog("create");
+  const [results, metadata] = await sequelize.query(query);
+  return results;
 };
+exports("query", Query);
 
-init();
-
-// exports("define", async (table, model) => {
-//   let cfg = {};
-//   Object.keys(model).forEach((col) => {
-//     cfg[col] = model[col];
-//     cfg[col].type = DataTypes[cfg[col].type];
-//   });
-
-//   jsrp[table] = sequelize.define(table, {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       autoIncrement: true,
-//       primaryKey: true,
-//     },
-//     ...cfg,
-//   });
-//   await jsrp[table].sync({ force: true });
-//   return jsrp[table];
-// });
-
-// exports("module", (table) => {
-//   return jsrp[table];
-// });
-
-// exports("db", () => {
-//   return jsrp;
-// });
+const Create = async (table, data) => {
+  prettylog("create");
+  const response = await CFG.modules[table].create(data);
+  if (response.dataValues) return response.dataValues;
+  else return false;
+};
+exports("create", Create);

@@ -1,7 +1,9 @@
 /// <reference types="@citizenfx/client" />
-const SPAWN = exports.spawnmanager;
 
+const SPAWN = exports.spawnmanager;
+const jsRP = exports.jsrp;
 const CFG = {
+  spawned: false,
   visible: false,
   visibleLocal: true,
   deadTime: 1000 * 60 * 1, //1 minute
@@ -47,22 +49,22 @@ const SetDefaultPed = (onPedLoad) => {
 };
 exports("SetDefaultPed", SetDefaultPed);
 
-const SpawnToLocation = (spawn = false) => {
-  let coords = GetEntityCoords(PlayerPedId(), true);
-  let ped = PlayerPedId();
-  NetworkResurrectLocalPlayer(coords, true, true, false);
-  SetPlayerInvincible(PlayerPedId(), false);
-  ClearPedBloodDamage(PlayerPedId());
-  SetEntityCoords(PlayerPedId(), spawn.x, spawn.y, spawn.z);
-  ClearPedTasksImmediately(ped);
-  if (spawn.h) SetEntityHeading(PlayerPedId(), spawn.h);
-  // SetEntityHealth(ped, 300);
-  RemoveAllPedWeapons(ped);
-  // SetFollowPedCamViewMode(4);
-  // CamRestoreJumpcut(GetGameCam());
-  ClearPlayerWantedLevel(PlayerId());
-};
-exports("SpawnToLocation", SpawnToLocation);
+// const SpawnToLocation = (spawn = false) => {
+//   let coords = GetEntityCoords(PlayerPedId(), true);
+//   let ped = PlayerPedId();
+//   NetworkResurrectLocalPlayer(coords, true, true, false);
+//   SetPlayerInvincible(PlayerPedId(), false);
+//   ClearPedBloodDamage(PlayerPedId());
+//   SetEntityCoords(PlayerPedId(), spawn.x, spawn.y, spawn.z);
+//   ClearPedTasksImmediately(ped);
+//   if (spawn.h) SetEntityHeading(PlayerPedId(), spawn.h);
+//   // SetEntityHealth(ped, 300);
+//   RemoveAllPedWeapons(ped);
+//   // SetFollowPedCamViewMode(4);
+//   // CamRestoreJumpcut(GetGameCam());
+//   ClearPlayerWantedLevel(PlayerId());
+// };
+// exports("SpawnToLocation", SpawnToLocation);
 
 setImmediate(() => {
   prettylog("resource loaded");

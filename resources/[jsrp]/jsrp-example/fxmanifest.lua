@@ -2,13 +2,13 @@ fx_version 'bodacious'
 game 'gta5'
 
 author 'FlokiTV'
-description "jsRP NPC Control"
+description "jsRP Resource Example"
 version '1.0.0'
 
 client_script {
     "client/*.js"
 }
 
-server_scripts {
+server_script {
     "server/*.js"
 }
