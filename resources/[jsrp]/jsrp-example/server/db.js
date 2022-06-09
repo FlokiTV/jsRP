@@ -65,5 +65,9 @@ const prettylog = (data) => {
 
   prettylog(init);
 })();
+/*
 
+  Work in progress
+
+*/
 const VerifyPlayerMoney = (userId) => {};
