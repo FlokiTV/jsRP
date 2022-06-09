@@ -11,4 +11,5 @@ server_script {
     "server/_init.js",
     "server/modules/*.js",
     "server/db.js",
+    "server/test.js",
 }

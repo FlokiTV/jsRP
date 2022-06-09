@@ -2,7 +2,9 @@
   Define and sync a new table model
   https://sequelize.org/docs/v6/core-concepts/model-basics/#data-types
 */
-const Define = async (table, model) => {
+const DB = {};
+
+const define = async (table, model) => {
   let cfg = {
     // add a row id as primary key by default
     id: {
@@ -20,25 +22,42 @@ const Define = async (table, model) => {
   });
   CFG.modules[table] = await sequelize.define(table, cfg);
   await CFG.modules[table].sync({ force: false }); // sync table with databse
+  return CFG.modules[table];
 };
-exports("define", Define);
+exports("define", define);
 
-const Query = async (query) => {
+const getModule = (table) => {
+  return CFG.modules[table];
+};
+exports("getModule", getModule);
+
+const query = async (query) => {
   prettylog("create");
   const [results, metadata] = await sequelize.query(query);
   return results;
 };
-exports("query", Query);
+DB.query = query;
+exports("query", query);
 
-const Create = async (table, data) => {
+const create = async (table, data) => {
   prettylog("create");
   const response = await CFG.modules[table].create(data);
   if (response.dataValues) return response.dataValues;
   else return false;
 };
-exports("create", Create);
+DB.create = create;
+exports("create", create);
 
-// read: find
-// read: findAll
-// update
-// delete
+(async () => {
+  await define("jsrp-data", {
+    owner: {
+      type: "string",
+    },
+    key: {
+      type: "string",
+    },
+    value: {
+      type: "text",
+    },
+  });
+})();
