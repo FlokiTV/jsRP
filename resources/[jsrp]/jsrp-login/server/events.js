@@ -44,26 +44,31 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
     /*
       Check user on Database
     */
-    const userId = await DB.GetUserIdByLicense(ids.license);
+    let userId = await DB.GetUserIdByLicense(ids.license);
+
     if (!userId) {
       prettylog(`Creating a new user ${name}`);
       Webhook("spawn", "jsrp:playerConnecting", `Creating a new Player ${name}`);
-      const nId = await DB.CreateUser(name, ids);
-      prettylog(nId);
+      userId = await DB.CreateUser(name, ids);
+      prettylog(userId);
     } else {
       prettylog("[GetUserIdByLicense] " + userId);
       Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] ${GetPlayerName(player)}`);
       prettylog("Logged " + GetPlayerName(player) + " " + userId);
+      // whitelist
+      // banned
     }
+    emit("playerConnected", userId);
     deferrals.done();
-    // pretend to be a wait
+    // // pretend to be a wait
+    // let errorType = "";
     // setTimeout(() => {
-    //   if (steamIdentifier === null) {
-    //     deferrals.done("You are not connected to Steam.");
-    //   } else {
+    //   if (steamIdentifier === null) deferrals.done("You are not connected to Steam.");
+    //   if (whitelist === null) deferrals.done("You are not connected to Steam.");
+    //   else {
     //     deferrals.done();
     //   }
-    // }, 0);
+    // }, 5000);
   }, 0);
 });
 

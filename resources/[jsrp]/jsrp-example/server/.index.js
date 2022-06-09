@@ -8,5 +8,8 @@ onRequest(Resource, "VerifyPlayerMoney", (playerId) => {
   return playerId;
 });
 
+on("playerConnected", (userId) => {
+  console.log("User connected " + userId);
+});
 // const userId = await DB.GetUserIdByLicense(ids.license);
 //   const register = await DB.GetUserRegister(userId);

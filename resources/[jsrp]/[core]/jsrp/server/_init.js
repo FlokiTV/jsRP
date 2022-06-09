@@ -14,17 +14,17 @@ const prettylog = (data) => {
   }
 };
 
-(async () => {
-  prettylog("init db:jsrp-test");
-  await DB.define("jsrp-test", {
-    name: {
-      type: "string",
-      teste: true,
-    },
-    age: {
-      type: "integer",
-    },
-  });
-  let data = await DB.create("jsrp-test", { name: "Floki", age: 10 });
-  prettylog(data);
-})();
+// (async () => {
+//   prettylog("init db:jsrp-test");
+//   await DB.define("jsrp-test", {
+//     name: {
+//       type: "string",
+//       teste: true,
+//     },
+//     age: {
+//       type: "integer",
+//     },
+//   });
+//   let data = await DB.create("jsrp-test", { name: "Floki", age: 10 });
+//   prettylog(data);
+// })();

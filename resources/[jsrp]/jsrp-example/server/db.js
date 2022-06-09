@@ -4,21 +4,20 @@ console.log("db");
 
 // log to we console
 const prettylog = (data) => {
-  try {
-    exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
-  } catch (error) {
-    console.log(data);
-  }
+  console.log(data);
+  // try {
+  //   exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
+  // } catch (error) {}
 };
 
 (async () => {
-  const TableNameMoney = "jsrp-money";
-  const TableNameHistory = "jsrp-money-history";
+  const TableMoney = "jsrp-money";
+  const TableHistory = "jsrp-money-history";
   /*
     Define jsrp-money table
   */
-  prettylog("init db:" + TableNameMoney);
-  await DB.define(TableNameMoney, {
+  prettylog("init db:" + TableMoney);
+  await DB.define(TableMoney, {
     userId: {
       type: "integer",
     },
@@ -32,15 +31,16 @@ const prettylog = (data) => {
   /*
     Define jsrp-money-history table
   */
-  prettylog("init db:" + TableNameHistory);
-  await DB.define(TableNameHistory, {
+  prettylog("init db:" + TableHistory);
+  await DB.define(TableHistory, {
     userId: {
       type: "integer",
     },
     /*
-        withdraw
-        deposit
-        transference
+      @enum
+      withdraw
+      deposit
+      transference
     */
     type: {
       type: "string",
@@ -56,6 +56,14 @@ const prettylog = (data) => {
       defaultValue: 0,
     },
   });
+
+  let init = await DB.create(TableMoney, {
+    userId: 1,
+    wallet: 200,
+    bank: 2000,
+  });
+
+  prettylog(init);
 })();
 
 const VerifyPlayerMoney = (userId) => {};

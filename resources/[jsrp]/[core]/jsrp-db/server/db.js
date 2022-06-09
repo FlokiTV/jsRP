@@ -2,7 +2,7 @@
   Define and sync a new table model
   https://sequelize.org/docs/v6/core-concepts/model-basics/#data-types
 */
-exports("define", async (table, model) => {
+const Define = async (table, model) => {
   let cfg = {
     // add a row id as primary key by default
     id: {
@@ -20,7 +20,8 @@ exports("define", async (table, model) => {
   });
   CFG.modules[table] = await sequelize.define(table, cfg);
   await CFG.modules[table].sync({ force: false }); // sync table with databse
-});
+};
+exports("define", Define);
 
 const Query = async (query) => {
   prettylog("create");
@@ -36,3 +37,8 @@ const Create = async (table, data) => {
   else return false;
 };
 exports("create", Create);
+
+// read: find
+// read: findAll
+// update
+// delete
