@@ -81,7 +81,7 @@ initDatabase();
 
 */
 const VerifyPlayerMoney = async (userId) => {
-  log(`Check if player [${playerId}] has bank account`);
+  log(`Check if player [${userId}] has bank account`);
   let find = await query("findOne", { where: { userId } });
   log(find);
   return find;
