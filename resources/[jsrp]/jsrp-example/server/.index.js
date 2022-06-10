@@ -18,6 +18,5 @@ on("playerConnected", (userId) => {
   log("User connected " + userId);
 });
 
-log("--------- init example ---------");
 // const userId = await DB.GetUserIdByLicense(ids.license);
 //   const register = await DB.GetUserRegister(userId);

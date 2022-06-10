@@ -33,7 +33,6 @@ async function setSchema(table, model) {
 DB.setSchema = setSchema;
 
 const getSchema = (table) => {
-  console.log("------- get schema " + table + "---------");
   return (fn, args = {}) => {
     return runInSchema(table, fn, args);
   };
