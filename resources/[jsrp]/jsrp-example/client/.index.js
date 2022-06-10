@@ -1,10 +1,9 @@
 /// <reference types="@citizenfx/client" />
-console.log("teste-index");
-const { Request } = exports.jsrp;
-const Resource = GetCurrentResourceName();
+const { request } = exports.jsrp;
+const resource = GetCurrentResourceName();
 
 on("playerSpawned", () => {
-  Request(Resource, "VerifyPlayerMoney", GetPlayerFromServerId(global.source)).then((response) => {
+  request(resource, "VerifyPlayerMoney", GetPlayerFromServerId(global.source)).then((response) => {
     console.log(response);
   });
 });

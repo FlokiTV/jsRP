@@ -1,12 +1,12 @@
-const Request = (resource, action, args = []) => {
-  console.log("jsrp:Request init");
+const request = (resource, action, args = []) => {
+  console.log("jsrp:request init");
   return new Promise((resolve) => {
     let event = `${resource}:${action}`;
     emitNet(event, args);
     onNet(`${resource}:${action}:response`, (res) => {
-      console.log("jsrp:Request done");
+      console.log("jsrp:request done");
       resolve(res);
     });
   });
 };
-exports("Request", Request);
+exports("request", request);

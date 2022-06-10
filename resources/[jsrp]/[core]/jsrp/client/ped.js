@@ -1,4 +1,4 @@
-const SpawnToLocation = (spawn = false) => {
+const spawnToLocation = (spawn = false) => {
   let coords = GetEntityCoords(PlayerPedId(), true);
   let ped = PlayerPedId();
   NetworkResurrectLocalPlayer(coords, true, true, false);
@@ -13,4 +13,4 @@ const SpawnToLocation = (spawn = false) => {
   // CamRestoreJumpcut(GetGameCam());
   ClearPlayerWantedLevel(PlayerId());
 };
-exports("SpawnToLocation", SpawnToLocation);
+exports("spawnToLocation", spawnToLocation);

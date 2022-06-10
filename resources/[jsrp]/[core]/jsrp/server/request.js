@@ -1,10 +1,10 @@
-const Response = async (resource, action, args = []) => {
-  console.log("jsrp:server:Response");
+const response = async (resource, action, args = []) => {
+  console.log("jsrp:server:response");
   let event = `${resource}:${action}:response`;
   console.log(`${event}`);
   emitNet(event, -1, args);
 };
-exports("Response", Response);
+exports("response", response);
 
 const onRequest = (resource, action, cb) => {
   let event = `${resource}:${action}`;

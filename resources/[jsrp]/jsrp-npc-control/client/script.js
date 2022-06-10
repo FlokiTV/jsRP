@@ -1,8 +1,8 @@
 /// <reference types="@citizenfx/client" />
-const { Request } = exports.jsrp;
-const Resource = GetCurrentResourceName();
+const { request } = exports.jsrp;
+const resource = GetCurrentResourceName();
 
-const req = Request(Resource, "getConfig");
+const req = request(resource, "getConfig");
 req.then((config) => {
   setTick(() => {
     /*

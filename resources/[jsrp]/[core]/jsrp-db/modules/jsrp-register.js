@@ -1,6 +1,6 @@
 log("[db] modules.register");
 
-modules.register = sequelize.define("jsrp-register", {
+modules.register = CFG.sequelize.define("jsrp-register", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

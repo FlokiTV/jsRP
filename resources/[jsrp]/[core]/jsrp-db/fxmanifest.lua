@@ -8,8 +8,8 @@ version "1.0.0"
 dependency "yarn"
 
 server_script {
-    "server/_init.js",
-    "server/modules/*.js",
-    "server/db.js",
-    "server/test.js",
+    "server/*.js",
+    -- "server/modules/*.js",
+    -- "server/db.js",
+    -- "server/test.js",
 }

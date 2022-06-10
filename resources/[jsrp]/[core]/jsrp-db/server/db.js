@@ -4,7 +4,13 @@
 */
 const DB = {};
 
-const define = async (table, model) => {
+const runInSchema = (table, fn, args = {}) => {
+  return CFG.schemas[table][fn](args);
+};
+/*
+  Schemas
+*/
+async function setSchema(table, model) {
   let cfg = {
     // add a row id as primary key by default
     id: {
@@ -20,44 +26,55 @@ const define = async (table, model) => {
     temp.type = type;
     cfg[col] = { ...temp };
   });
-  CFG.modules[table] = await sequelize.define(table, cfg);
-  await CFG.modules[table].sync({ force: false }); // sync table with databse
-  return CFG.modules[table];
-};
-exports("define", define);
+  CFG.schemas[table] = await CFG.sequelize.define(table, cfg);
+  await CFG.schemas[table].sync({ force: false }); // sync table with databse
+  return CFG.schemas[table];
+}
+DB.setSchema = setSchema;
 
-const getModule = (table) => {
-  return CFG.modules[table];
+const getSchema = (table) => {
+  console.log("------- get schema " + table + "---------");
+  return (fn, args = {}) => {
+    return runInSchema(table, fn, args);
+  };
+  // return (fn, data) => {
+  //   return CFG.schemas[table][fn](data);
+  // };
 };
-exports("getModule", getModule);
+DB.getSchema = getSchema;
 
 const query = async (query) => {
-  prettylog("create");
-  const [results, metadata] = await sequelize.query(query);
+  const [results, metadata] = await CFG.sequelize.query(query);
   return results;
 };
 DB.query = query;
-exports("query", query);
 
-const create = async (table, data) => {
-  prettylog("create");
-  const response = await CFG.modules[table].create(data);
-  if (response.dataValues) return response.dataValues;
-  else return false;
-};
-DB.create = create;
-exports("create", create);
+/*
+  each every DB key and set on jsRP module a new function
+*/
+Object.keys(DB).forEach((name) => {
+  jsRP.setModule("DB", name, DB[name]);
+});
 
-(async () => {
-  await define("jsrp-data", {
-    owner: {
-      type: "string",
-    },
-    key: {
-      type: "string",
-    },
-    value: {
-      type: "text",
-    },
-  });
-})();
+// const create = async (table, data) => {
+//   log("create");
+//   const response = await CFG.modules[table].create(data);
+//   if (response.dataValues) return response.dataValues;
+//   else return false;
+// };
+// DB.create = create;
+// exports("create", create);
+
+// (async () => {
+//   await define("jsrp-data", {
+//     owner: {
+//       type: "string",
+//     },
+//     key: {
+//       type: "string",
+//     },
+//     value: {
+//       type: "text",
+//     },
+//   });
+// })();

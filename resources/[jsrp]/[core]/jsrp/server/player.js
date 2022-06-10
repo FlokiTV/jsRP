@@ -1,4 +1,4 @@
-const ParseIdentifiers = (player) => {
+const parseIdentifiers = (player) => {
   const ids = {};
   for (let i = 0; i < GetNumPlayerIdentifiers(player); i++) {
     const identifier = GetPlayerIdentifier(player, i).split(":");
@@ -6,4 +6,4 @@ const ParseIdentifiers = (player) => {
   }
   return ids;
 };
-exports("ParseIdentifiers", ParseIdentifiers);
+exports("parseIdentifiers", parseIdentifiers);

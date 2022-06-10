@@ -1,23 +1,13 @@
 /// <reference types="@citizenfx/server" />
-const DB = exports["jsrp-db"];
-console.log("db");
 
-// log to we console
-const prettylog = (data) => {
-  console.log(data);
-  // try {
-  //   exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
-  // } catch (error) {}
-};
-
-(async () => {
+const initDatabase = async () => {
   const TableMoney = "jsrp-money";
   const TableHistory = "jsrp-money-history";
   /*
     Define jsrp-money table
   */
-  prettylog("init db:" + TableMoney);
-  await DB.define(TableMoney, {
+  log("init db:" + TableMoney);
+  await DB.setSchema(TableMoney, {
     userId: {
       type: "integer",
     },
@@ -31,8 +21,8 @@ const prettylog = (data) => {
   /*
     Define jsrp-money-history table
   */
-  prettylog("init db:" + TableHistory);
-  await DB.define(TableHistory, {
+  log("init db:" + TableHistory);
+  await DB.setSchema(TableHistory, {
     userId: {
       type: "integer",
     },
@@ -57,14 +47,14 @@ const prettylog = (data) => {
     },
   });
 
-  let init = await DB.create(TableMoney, {
-    userId: 1,
-    wallet: 200,
-    bank: 2000,
-  });
+  let schema = DB.getSchema(TableMoney);
+  let data = await schema("create", { userId: 1, wallet: 200, bank: 2000 });
+  let find = await schema("findAll");
+  console.log(find);
+  // sch("create", { userId: 1, wallet: 200, bank: 2000 });
+};
 
-  prettylog(init);
-})();
+initDatabase();
 /*
 
   Work in progress
