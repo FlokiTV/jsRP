@@ -47,10 +47,17 @@ const query = async (query) => {
   return results;
 };
 DB.query = query;
-
 /*
   each every DB key and set on jsRP module a new function
 */
+/*
+const DB = {
+  setSchema: ()=>{},
+  getSchema: ()=>{},
+  query: ()=>{},
+}
+*/
+//["setSchema", "getSchema", "query"]
 Object.keys(DB).forEach((name) => {
   jsRP.setModule("DB", name, DB[name]);
 });

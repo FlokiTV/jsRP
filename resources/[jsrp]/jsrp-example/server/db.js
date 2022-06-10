@@ -5,9 +5,10 @@
   To init database tables you'll need use a async function
 
 */
+const TableMoney = "jsrp-money";
+const TableHistory = "jsrp-money-history";
+
 const initDatabase = async () => {
-  const TableMoney = "jsrp-money";
-  const TableHistory = "jsrp-money-history";
   /*
     Define jsrp-money table
   */
@@ -66,7 +67,7 @@ initDatabase();
   // run "create" method from sequelize
   let data = await schema("create", { userId: 1, wallet: 200, bank: 2000 });
   // run "findAll" method from sequelize
-  let find = await schema("findAll");
+  let find = await schema("findAll", { where: { id: 2 } });
   // print on console the results
   console.log(find);
 })();
