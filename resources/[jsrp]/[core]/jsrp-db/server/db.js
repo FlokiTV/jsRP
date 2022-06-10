@@ -26,7 +26,7 @@ async function setSchema(table, model) {
     temp.type = type;
     cfg[col] = { ...temp };
   });
-  CFG.schemas[table] = await CFG.sequelize.define(table, cfg);
+  CFG.schemas[table] = await CFG.sequelize.define(table, cfg, { freezeTableName: true });
   await CFG.schemas[table].sync({ force: false }); // sync table with databse
   return CFG.schemas[table];
 }
@@ -43,7 +43,9 @@ const getSchema = (table) => {
 DB.getSchema = getSchema;
 
 const query = async (query) => {
+  console.log(query);
   const [results, metadata] = await CFG.sequelize.query(query);
+  console.log(results);
   return results;
 };
 DB.query = query;

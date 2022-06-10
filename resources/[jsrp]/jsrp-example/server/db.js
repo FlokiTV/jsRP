@@ -63,13 +63,15 @@ initDatabase();
 */
 (async () => {
   // get sequelize helper function
-  let schema = DB.getSchema(TableMoney);
+  let query = DB.getSchema(TableMoney);
   // run "create" method from sequelize
-  let data = await schema("create", { userId: 1, wallet: 200, bank: 2000 });
+  let data = await query("create", { userId: 1, wallet: 200, bank: 2000 });
   // run "findAll" method from sequelize
-  let find = await schema("findAll", { where: { id: 2 } });
+  let find = await query("findAll", { attributes: ["wallet"] });
   // print on console the results
-  console.log(find);
+  // console.log(find);
+  let q = await DB.query("SELECT * FROM `jsrp-money`");
+  console.log(q);
 })();
 
 /*
