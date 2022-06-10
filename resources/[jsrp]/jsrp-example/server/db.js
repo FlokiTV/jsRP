@@ -1,5 +1,10 @@
 /// <reference types="@citizenfx/server" />
 
+/*
+
+  To init database tables you'll need use a async function
+
+*/
 const initDatabase = async () => {
   const TableMoney = "jsrp-money";
   const TableHistory = "jsrp-money-history";
@@ -46,15 +51,26 @@ const initDatabase = async () => {
       defaultValue: 0,
     },
   });
-
-  let schema = DB.getSchema(TableMoney);
-  let data = await schema("create", { userId: 1, wallet: 200, bank: 2000 });
-  let find = await schema("findAll");
-  console.log(find);
-  // sch("create", { userId: 1, wallet: 200, bank: 2000 });
 };
-
+// run and execute function async
 initDatabase();
+
+/*
+
+  Working with Sequelize
+
+*/
+(async () => {
+  // get sequelize helper function
+  let schema = DB.getSchema(TableMoney);
+  // run "create" method from sequelize
+  let data = await schema("create", { userId: 1, wallet: 200, bank: 2000 });
+  // run "findAll" method from sequelize
+  let find = await schema("findAll");
+  // print on console the results
+  console.log(find);
+})();
+
 /*
 
   Work in progress
