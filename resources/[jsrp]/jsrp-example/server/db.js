@@ -67,9 +67,10 @@ initDatabase();
   // run "create" method from sequelize
   let data = await query("create", { userId: 1, wallet: 200, bank: 2000 });
   // run "findAll" method from sequelize
-  let find = await query("findAll", { attributes: ["wallet"] });
+  let find = await query("findAll");
   // print on console the results
-  // console.log(find);
+  console.log(find);
+  // run mysql raw query
   let q = await DB.query("SELECT * FROM `jsrp-money`");
   console.log(q);
 })();
@@ -79,4 +80,9 @@ initDatabase();
   Work in progress
 
 */
-const VerifyPlayerMoney = (userId) => {};
+const VerifyPlayerMoney = async (userId) => {
+  log(`Check if player [${playerId}] has bank account`);
+  let find = await query("findOne", { where: { userId } });
+  log(find);
+  return find;
+};

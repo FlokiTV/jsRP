@@ -9,11 +9,6 @@ const log = (data) => {
   console.log(data);
 };
 
-onRequest(resource, "VerifyPlayerMoney", (playerId) => {
-  log(`Check if player [${playerId}] has bank account`);
-  return playerId;
-});
-
 on("playerConnected", (userId) => {
   log("User connected " + userId);
 });

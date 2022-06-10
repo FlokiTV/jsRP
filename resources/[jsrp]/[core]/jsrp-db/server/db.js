@@ -45,7 +45,6 @@ DB.getSchema = getSchema;
 const query = async (query) => {
   console.log(query);
   const [results, metadata] = await CFG.sequelize.query(query);
-  console.log(results);
   return results;
 };
 DB.query = query;
