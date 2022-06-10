@@ -3,7 +3,8 @@ const { request } = exports.jsrp;
 const resource = GetCurrentResourceName();
 
 on("playerSpawned", () => {
-  request(resource, "VerifyPlayerMoney", GetPlayerFromServerId(global.source)).then((response) => {
+  let player = GetPlayerIndex(-1);
+  request(resource, "VerifyPlayerMoney", player).then((response) => {
     console.log(response);
   });
 });

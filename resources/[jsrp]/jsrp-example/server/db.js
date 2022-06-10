@@ -61,27 +61,30 @@ initDatabase();
   Working with Sequelize
 
 */
-(async () => {
-  // get sequelize helper function
-  let query = DB.getSchema(TableMoney);
-  // run "create" method from sequelize
-  let data = await query("create", { userId: 1, wallet: 200, bank: 2000 });
-  // run "findAll" method from sequelize
-  let find = await query("findAll");
-  // print on console the results
-  console.log(find);
-  // run mysql raw query
-  let q = await DB.query("SELECT * FROM `jsrp-money`");
-  console.log(q);
-})();
+// set true to run this example
+if (false)
+  (async () => {
+    // get sequelize helper function
+    let query = DB.getSchema(TableMoney);
+    // run "create" method from sequelize
+    let data = await query("create", { userId: 1, wallet: 200, bank: 2000 });
+    // run "findAll" method from sequelize
+    let find = await query("findAll");
+    // print on console the results
+    console.log(find);
+    // run mysql raw query
+    let q = await DB.query("SELECT * FROM `jsrp-money`");
+    console.log(q);
+  })();
 
 /*
-
   Work in progress
-
+  TODO
+    jsrp.getModule("user").getIdFromSouce(source) -- get user by source id
 */
 const VerifyPlayerMoney = async (userId) => {
-  log(`Check if player [${userId}] has bank account`);
+  log(`Check if player source [${userId}] has bank account`);
+  let query = DB.getSchema(TableMoney);
   let find = await query("findOne", { where: { userId } });
   log(find);
   return find;
