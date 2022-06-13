@@ -44,14 +44,15 @@ const getSchema = (table) => {
 DB.getSchema = getSchema;
 
 const parse = (data) => {
-  console.log(data);
   let parsed = false;
+  if (!data) return parsed;
   if (typeof data == "array") {
     parsed = [];
     data.map((res) => {
       parsed.push(res);
     });
-  } else parsed = data.dataValues || false;
+  } else if ("dataValues" in data) parsed = data.dataValues;
+  return parsed;
 };
 DB.parse = parse;
 

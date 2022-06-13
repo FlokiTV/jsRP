@@ -31,14 +31,16 @@ jsRP().DB.setSchema(schemaName, {
 });
 
 const create = async (name, licenses) => {
-  let user = await db("create", {
+  let data = await db("create", {
     name,
     ip: licenses.ip || 0,
   });
+  let user = jsRP("DB").parse(data); //get data.dataValues
+  //insert all player identifiers on database
   Object.keys(licenses).forEach(async (lsc) => {
-    await jsRP().id.create(user.id, lsc, licenses[lsc]);
+    await jsRP("id").create(user.id, lsc, licenses[lsc]);
   });
-  return user.dataValues || false;
+  return user || false;
 };
 USER.create = create;
 

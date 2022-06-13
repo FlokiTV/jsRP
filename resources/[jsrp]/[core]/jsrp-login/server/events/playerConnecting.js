@@ -11,13 +11,12 @@ on("playerConnecting", async (name, setKickReason, deferrals) => {
   /*
     Check user on Database
   */
-  let userId = await jsRP().id.getIdByLicense(ids.license);
-  console.log(userId);
+  let userId = await jsRP("id").getIdByLicense(ids.license);
   if (!userId) {
     prettylog(`Creating a new user ${name}`);
-    userId = await jsRP().user.create(name, ids);
+    let userId = await jsRP("user").create(name, ids);
+    prettylog(userId);
     Webhook("register", "jsrp:playerConnecting", `Register a new Player ${name} [${userId.id}]`);
-    prettylog(userId.id);
   } else {
     prettylog("[GetUserIdByLicense] " + userId);
     Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] ${GetPlayerName(player)}`);

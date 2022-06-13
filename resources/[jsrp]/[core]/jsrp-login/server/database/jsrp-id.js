@@ -3,7 +3,7 @@ const db = jsRP("DB").getSchema(schemaName);
 const ID = {};
 
 /*
-    Set schema and create a new databse table
+  Set schema and create a new databse table
 */
 jsRP("DB").setSchema(schemaName, {
   userId: {
@@ -18,19 +18,16 @@ jsRP("DB").setSchema(schemaName, {
 });
 
 const getIdByLicense = async (license) => {
-  console.log("getIdByLicense");
-  let userId = await db("findOne", {
+  console.log("getIdByLicense " + license);
+  let user = await db("findOne", {
     where: {
       type: "license",
       value: license,
     },
   });
-  userId = userId || false;
-  if (userId) {
-    return userId.userId;
-  } else {
-    return userId;
-  }
+  user = jsRP("DB").parse(user);
+  let userId = user.userId || false;
+  return userId;
 };
 ID.getIdByLicense = getIdByLicense;
 
