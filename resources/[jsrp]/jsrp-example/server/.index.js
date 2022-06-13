@@ -1,11 +1,9 @@
 /// <reference types="@citizenfx/server" />
 const resource = GetCurrentResourceName();
-const jsRP = exports["jsrp"];
-const { onRequest, parseIdentifiers } = jsRP;
-const DB = jsRP.getModule("DB");
+const jsRP = exports["jsrp"].jsRP();
+const { onRequest, parseIdentifiers, DB } = jsRP;
 
 const log = (data) => {
-  // exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
   console.log(data);
 };
 

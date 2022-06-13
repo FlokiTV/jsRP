@@ -9,4 +9,5 @@ const request = (resource, action, args = []) => {
     });
   });
 };
+CFG.core.request = request;
 exports("request", request);

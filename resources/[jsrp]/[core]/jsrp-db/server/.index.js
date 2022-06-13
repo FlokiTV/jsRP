@@ -1,7 +1,7 @@
 /// <reference types="@citizenfx/server" />
 
 const { Sequelize, DataTypes } = require("sequelize");
-const jsRP = exports.jsrp;
+const jsRP = exports.jsrp.jsRP();
 
 const CFG = {
   // Connection

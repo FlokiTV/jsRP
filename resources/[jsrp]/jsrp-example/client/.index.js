@@ -1,5 +1,5 @@
 /// <reference types="@citizenfx/client" />
-const { request } = exports.jsrp;
+const { request } = exports.jsrp.jsRP();
 const resource = GetCurrentResourceName();
 
 on("playerSpawned", () => {

@@ -1,5 +1,6 @@
 /// <reference types="@citizenfx/client" />
-const { request } = exports.jsrp;
+const jsRP = exports.jsrp.jsRP();
+const { request } = jsRP;
 const resource = GetCurrentResourceName();
 
 const req = request(resource, "getConfig");

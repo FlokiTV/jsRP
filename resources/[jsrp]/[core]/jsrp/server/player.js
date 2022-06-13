@@ -6,4 +6,4 @@ const parseIdentifiers = (player) => {
   }
   return ids;
 };
-exports("parseIdentifiers", parseIdentifiers);
+CFG.core.parseIdentifiers = parseIdentifiers;

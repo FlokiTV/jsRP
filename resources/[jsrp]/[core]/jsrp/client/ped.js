@@ -13,4 +13,5 @@ const spawnToLocation = (spawn = false) => {
   // CamRestoreJumpcut(GetGameCam());
   ClearPlayerWantedLevel(PlayerId());
 };
-exports("spawnToLocation", spawnToLocation);
+CFG.core.spawnToLocation = spawnToLocation;
+// exports("spawnToLocation", spawnToLocation);

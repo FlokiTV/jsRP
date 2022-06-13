@@ -24,6 +24,7 @@ async function setSchema(table, model) {
     let temp = { ...model[col] };
     type = getDataType(temp.type);
     temp.type = type;
+    if (temp.default) temp.defaultValue = temp.default;
     cfg[col] = { ...temp };
   });
   CFG.schemas[table] = await CFG.sequelize.define(table, cfg, { freezeTableName: true });
@@ -42,6 +43,18 @@ const getSchema = (table) => {
 };
 DB.getSchema = getSchema;
 
+const parse = (data) => {
+  console.log(data);
+  let parsed = false;
+  if (typeof data == "array") {
+    parsed = [];
+    data.map((res) => {
+      parsed.push(res);
+    });
+  } else parsed = data.dataValues || false;
+};
+DB.parse = parse;
+
 const query = async (query) => {
   console.log(query);
   const [results, metadata] = await CFG.sequelize.query(query);
@@ -50,38 +63,13 @@ const query = async (query) => {
 DB.query = query;
 /*
   each every DB key and set on jsRP module a new function
-*/
-/*
-const DB = {
-  setSchema: ()=>{},
-  getSchema: ()=>{},
-  query: ()=>{},
-}
+
+  const DB = {
+    setSchema: ()=>{},
+    getSchema: ()=>{},
+    query: ()=>{},
+  }
+
 */
 //["setSchema", "getSchema", "query"]
-Object.keys(DB).forEach((name) => {
-  jsRP.setModule("DB", name, DB[name]);
-});
-
-// const create = async (table, data) => {
-//   log("create");
-//   const response = await CFG.modules[table].create(data);
-//   if (response.dataValues) return response.dataValues;
-//   else return false;
-// };
-// DB.create = create;
-// exports("create", create);
-
-// (async () => {
-//   await define("jsrp-data", {
-//     owner: {
-//       type: "string",
-//     },
-//     key: {
-//       type: "string",
-//     },
-//     value: {
-//       type: "text",
-//     },
-//   });
-// })();
+jsRP.setObjectModule("DB", DB);

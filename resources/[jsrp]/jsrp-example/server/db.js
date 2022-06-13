@@ -71,10 +71,10 @@ if (false)
     // run "findAll" method from sequelize
     let find = await query("findAll");
     // print on console the results
-    console.log(find);
+    console.log(DB.parse(find));
     // run mysql raw query
-    let q = await DB.query("SELECT * FROM `jsrp-money`");
-    console.log(q);
+    // let q = await DB.query("SELECT * FROM `jsrp-money`");
+    // console.log(q);
   })();
 
 /*

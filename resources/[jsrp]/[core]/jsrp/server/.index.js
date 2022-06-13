@@ -4,6 +4,7 @@ const CFG = {
     return this[key];
   },
   resource: GetCurrentResourceName(),
+  core: {}, // core functions
   modules: {},
 };
 
@@ -14,32 +15,43 @@ const prettylog = (data) => {
     console.log(data);
   }
 };
-
-prettylog("resource init");
-
+/*
+  Assign to a module a new property by name
+*/
 const setModule = (module, name, fn) => {
-  console.log("Setting module " + module + " a new function" + name);
+  console.log("Setting module " + module + " a new function " + name);
   // check if module is empty
   if (CFG.modules[module] == undefined) CFG.modules[module] = {};
   CFG.modules[module][name] = fn;
 };
-exports("setModule", setModule);
-
+CFG.core.setModule = setModule;
+/*
+  Assign to a module a new object
+*/
+const setObjectModule = (module, obj) => {
+  Object.keys(obj).map((name) => {
+    setModule(module, name, obj[name]);
+  });
+};
+CFG.core.setObjectModule = setObjectModule;
+/*
+  Get separated module by name
+*/
 const getModule = (name) => {
   return CFG.modules[name];
 };
-exports("getModule", getModule);
-// (async () => {
-//   prettylog("init db:jsrp-test");
-//   await DB.define("jsrp-test", {
-//     name: {
-//       type: "string",
-//       teste: true,
-//     },
-//     age: {
-//       type: "integer",
-//     },
-//   });
-//   let data = await DB.create("jsrp-test", { name: "Floki", age: 10 });
-//   prettylog(data);
-// })();
+CFG.core.getModule = getModule;
+/*
+  Get jsRP interface with core functions and all modules embed
+*/
+const jsRP = (module = false) => {
+  if (module) return getModule(module);
+  else {
+    let jsrp = {
+      ...CFG.core,
+      ...CFG.modules,
+    };
+    return jsrp;
+  }
+};
+exports("jsRP", jsRP);

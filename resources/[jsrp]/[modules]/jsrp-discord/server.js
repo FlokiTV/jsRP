@@ -1,5 +1,6 @@
 const axios = require("axios");
-
+const { setObjectModule } = exports.jsrp.jsRP();
+const Discord = {};
 const log = (data) => {
   try {
     exports["jsrp-ws"].prettylog("s", GetCurrentResourceName(), data);
@@ -25,9 +26,7 @@ const SEND = (cfg) => {
     });
 };
 
-log("[Exporting Module] Discord");
-
-exports("send", (webhook, data) => {
+Discord.send = (webhook, data) => {
   log("send");
   let cfg = {
     ...config,
@@ -35,10 +34,9 @@ exports("send", (webhook, data) => {
     data: JSON.stringify(data),
   };
   SEND(cfg);
-});
+};
 
-exports("log", async (webhook, title, description, from, color) => {
-  log("log");
+Discord.log = async (webhook, title, description, from, color) => {
   let c;
   switch (color) {
     case "error":
@@ -74,4 +72,6 @@ exports("log", async (webhook, title, description, from, color) => {
     data: JSON.stringify(data),
   };
   SEND(cfg);
-});
+};
+
+setObjectModule("discord", Discord);
