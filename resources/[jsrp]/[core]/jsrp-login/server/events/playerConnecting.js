@@ -3,7 +3,7 @@ on("playerConnecting", async (name, setKickReason, deferrals) => {
   const player = global.source;
   deferrals.update(`Olá, ${name}. Estamos verificando nosso banco de dados.`);
   const ids = jsRP().parseIdentifiers(player);
-  console.log("Lisence: " + ids.license);
+  console.log("Lisence for " + player + ": " + ids.license);
   if (!ids.license || !ids.ip) {
     prettylog("Erro ao obter licença do FiveM.");
     deferrals.done("Erro ao obter licença do FiveM.");
