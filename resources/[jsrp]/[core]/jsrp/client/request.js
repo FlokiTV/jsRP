@@ -1,10 +1,10 @@
 const request = (resource, action, args = []) => {
-  console.log("jsrp:request init");
+  let event = `${resource}:${action}`;
+  console.log(`[jsrp:request] ${event} init`);
   return new Promise((resolve) => {
-    let event = `${resource}:${action}`;
     emitNet(event, args);
-    onNet(`${resource}:${action}:response`, (res) => {
-      console.log("jsrp:request done");
+    onNet(`${event}:response`, (res) => {
+      console.log(`[jsrp:request] ${event} done`);
       resolve(res);
     });
   });

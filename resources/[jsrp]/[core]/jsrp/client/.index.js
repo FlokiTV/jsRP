@@ -48,3 +48,4 @@ const jsRP = (module = false) => {
   }
 };
 exports("jsRP", jsRP);
+exports("self", jsRP);

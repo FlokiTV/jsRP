@@ -30,7 +30,7 @@ const spawnLocations = {
   },
 };
 
-const setDefaultPed = (onPedLoad) => {
+const setDefaultPed = (onPedLoad = false) => {
   let model = GetHashKey("mp_m_freemode_01");
   RequestModel(model);
   let load = setInterval(() => {
@@ -39,7 +39,7 @@ const setDefaultPed = (onPedLoad) => {
       SetPedDefaultComponentVariation(PlayerPedId());
       SetModelAsNoLongerNeeded(model);
       clearInterval(load);
-      onPedLoad();
+      if (onPedLoad) onPedLoad();
     }
   }, 50);
 };

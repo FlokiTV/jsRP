@@ -1,5 +1,9 @@
 const response = async (resource, action, args = []) => {
   let event = `${resource}:${action}:response`;
+  /*
+    TO-DO:
+      - emit event only for request player
+  */
   emitNet(event, -1, args);
 };
 CFG.core.response = response;

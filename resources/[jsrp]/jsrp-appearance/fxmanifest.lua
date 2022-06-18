@@ -7,6 +7,7 @@ version '1.0.0'
 
 client_script {
     "client/index.js",
+    "client/commands.js",
     "client/events/*.js",
 }
 

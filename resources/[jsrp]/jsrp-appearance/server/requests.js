@@ -2,6 +2,7 @@
 
 onRequest(resource, "defaultAppearance", (sex = "m") => {
   return defaultAppearance[sex];
+  // return defaultAppearance[sex];
 });
 
 onRequest(resource, "getAppearance", (player) => {

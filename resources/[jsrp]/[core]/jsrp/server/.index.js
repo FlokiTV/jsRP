@@ -3,9 +3,11 @@ const CFG = {
   get(key) {
     return this[key];
   },
+  players: {},
   resource: GetCurrentResourceName(),
   core: {}, // core functions
   modules: {},
+  commands: {},
 };
 
 const prettylog = (data) => {
@@ -55,3 +57,4 @@ const jsRP = (module = false) => {
   }
 };
 exports("jsRP", jsRP);
+exports("self", jsRP);

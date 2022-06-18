@@ -21,6 +21,7 @@ onNet("setDefaultPed", async () => {
     let ap = await request(resource, "getAppearance", player);
     if (ap) {
       console.log(ap);
+      AP.setPlayerAppearance(ap); // from db
     } else {
       let defalt = await request(resource, "defaultAppearance", "m");
       AP.setPlayerAppearance(defalt);
