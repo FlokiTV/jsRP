@@ -19,11 +19,12 @@ on("playerConnecting", async (name, setKickReason, deferrals) => {
     Webhook("register", "jsrp:playerConnecting", `Register a new Player ${name} [${userId.id}]`);
   } else {
     prettylog("[GetUserIdByLicense] " + userId);
-    Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] ${GetPlayerName(player)}`);
+    Webhook("spawn", "jsrp:playerConnecting", `Logger Player [${userId}] [${player}] ${GetPlayerName(player)}`);
     prettylog("Logged " + GetPlayerName(player) + " " + userId);
     // whitelist
     // banned
   }
   emit("playerConnected", userId);
+  //end queue
   deferrals.done();
 });

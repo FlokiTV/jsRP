@@ -4,10 +4,9 @@ const request = (resource, action, args = []) => {
   return new Promise((resolve) => {
     emitNet(event, args);
     onNet(`${event}:response`, (res) => {
-      console.log(`[jsrp:request] ${event} done`);
+      // console.log(`[jsrp:request] ${event} done`);
       resolve(res);
     });
   });
 };
 CFG.core.request = request;
-exports("request", request);

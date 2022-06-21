@@ -41,6 +41,19 @@ const fn = {
     let ready = await request(resource, "setReady", true);
     cb({ ready: true });
   },
+  emit: async (data, cb) => {
+    console.log("NUI emit");
+    console.log(data);
+    /*
+      todo: get source
+    */
+    try {
+      CB[data.to][data.path](data);
+    } catch (error) {
+      console.log("Error on " + data.to + " " + data.path);
+    }
+    cb(1);
+  },
 };
 
 Object.keys(fn).forEach((type) => {

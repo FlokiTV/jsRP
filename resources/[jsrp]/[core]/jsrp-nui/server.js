@@ -7,6 +7,7 @@ const { readFile } = require("fs");
 const CFG = {
   ready: false,
 };
+
 addCommand("alert", (source, args) => {
   const text = args.join(" ");
   readFile(root + "/template/alert.html", "utf8", (err, data) => {
@@ -15,8 +16,18 @@ addCommand("alert", (source, args) => {
   });
 });
 
+addCommand("alert-s", (source, args) => {
+  const text = args.join(" ");
+  readFile(root + "/template/success.html", "utf8", (err, data) => {
+    let html = data.replace("{text}", text);
+    emitNet("jsrp-nui:notify", -1, html);
+  });
+});
+
 onRequest(resource, "setReady", (css) => {
   CFG.ready = true;
+  emitNet("jsrp-nui:ready", -1, true);
+  emit("jsrp-nui:ready", -1, true);
   return CFG.ready;
 });
 

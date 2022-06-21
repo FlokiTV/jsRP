@@ -1,1 +1,0 @@
-import{g as i}from"./navigation-0e6511d1.js";function d(...a){}function u(a={}){const s=document.querySelector("body");window.addEventListener("message",function(o){o.data.show!=null&&(o.data.show?s.style.opacity=1:s.style.opacity=0),o.data.goto!=null&&(d("/nui"+o.data.goto),i("/nui"+o.data.goto)),Object.keys(a).forEach(t=>{o.data[t]!=null&&a[t](o.data[t])})})}export{u as s};

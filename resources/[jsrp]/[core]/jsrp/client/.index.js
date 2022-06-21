@@ -6,6 +6,7 @@ const CFG = {
   resource: GetCurrentResourceName(),
   core: {},
   modules: {},
+  players: {}, //server players cache
 };
 
 /*
