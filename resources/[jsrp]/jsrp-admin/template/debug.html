@@ -1,0 +1,11 @@
+<div class="absolute top-1/2 right-10 p-2 bg-black text-white">
+  <div>Player info</div>
+  <div>position: x y z</div>
+  <div>position: x y z</div>
+</div>
+<script>
+  console.log("init debug");
+  window.on("debug-player", (data) => {
+    console.log(data);
+  });
+</script>
