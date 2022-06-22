@@ -36,6 +36,16 @@ Discord.send = (webhook, data) => {
   SEND(cfg);
 };
 
+Discord.sendRaw = (webhook, data) => {
+  log("send");
+  let cfg = {
+    ...config,
+    url: webhook,
+    data,
+  };
+  SEND(cfg);
+};
+
 Discord.log = async (webhook, title, description, from, color) => {
   let c;
   switch (color) {

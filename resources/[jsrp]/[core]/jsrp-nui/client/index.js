@@ -33,22 +33,28 @@ const addCSS = (css) => {
 };
 NUI.addCSS = addCSS;
 
-const addHTML = (name, html) => {
+const addHTML = (name, html, eval = false) => {
   SendNUIMessage({
     addHTML: {
       name,
       html,
+      eval,
     },
   });
 };
 NUI.addHTML = addHTML;
+
+const focus = (hasFocus = false, hasCursor = false) => {
+  SetNuiFocus(hasFocus, hasCursor);
+};
+NUI.focus = focus;
 
 /*
   Callback
 */
 NUI.on = (module, fn, cb) => {
   console.log("register response " + module);
-  console.log(fn);
+  // console.log(fn);
   if (!CB[module]) CB[module] = {};
   CB[module][fn] = cb;
 };
