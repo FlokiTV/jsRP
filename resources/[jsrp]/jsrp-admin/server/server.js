@@ -2,47 +2,68 @@
 const resource = GetCurrentResourceName();
 const root = GetResourcePath(resource);
 const jsRP = exports.jsrp.self;
-const { onRequest, response, addCommand } = jsRP();
+const { onRequest, addCommand } = jsRP();
 const { readFile } = require("fs");
+const cmdPrefix = "admin:";
 
 const focus = (source) => {
-  emitNet("jsrp-nui:focus", source, true, true);
+  jsRP().onClient(source, "nui", "focus", [true, true]);
 };
-
-RegisterCommand("nc", function (source, args, rawCommand) {
-  console.log("nc");
-  emitNet("nc", source);
-});
-
-RegisterCommand("cds", function (source, args, rawCommand) {
-  emitNet("jsrp-admin:cds", source);
-  focus(source);
-});
 
 const loadHTML = (name) => {
   return new Promise((resolve) => {
-    readFile(root + "/template/" + screen + ".html", "utf8", (err, data) => {
+    readFile(root + "/template/" + name + ".html", "utf8", (err, data) => {
       let html = data;
       resolve(html);
     });
   });
 };
+
+addCommand(cmdPrefix + "nc", (source, args, rawCommand) => {
+  console.log("nc");
+  emitNet("nc", source);
+});
+
+addCommand(cmdPrefix + "cds", (source, args, rawCommand) => {
+  emitNet("jsrp-admin:cds", source);
+  focus(source);
+});
+
+addCommand("debug:html", async (source, args) => {});
 /*
   Init NUI on Client
 */
-onRequest(resource, "init", (player) => {
-  let html = loadHTML("screen");
-  emitNet("jsrp-nui:html", player, "jsrp-admin-screen", html, true);
+onRequest(resource, "init", async (player) => {
+  let html = await loadHTML("screen");
+  jsRP().onClient(player, "nui", "addHTML", ["jsrp-admin-screen", html]);
   return;
 });
-
-onRequest(resource, "send-ss", (img) => {
-  console.log(img);
-  // let b64 = data.split(",")[1]; // get only base64
-  // sendMessage(b64toBlob(b64), { content: 'Resized Image'})
-  return;
+/*
+  Request ScreenShoot
+*/
+addCommand(cmdPrefix + "get-ss", (source, args) => {
+  let [nId] = args;
+  let player = jsRP("user").get(nId);
+  let to = player ? player.sId : source;
+  jsRP().onClient(to, "nui", "emit", [
+    {
+      requestScreenShot: {
+        url: "https://discord.com/api/webhooks/985915299310219294/sRh5ozfEN4GL7VnyhveMw9lo2xLDaVpgtlshmpzZ8aqP6jSgVuE8g4QxNvlnIzRgH7ft",
+      },
+    },
+  ]);
 });
 
-addCommand("getSS", (source, args) => {
-  emitNet("jsrp-nui:emit", source, { requestScreenShot: [] });
+/*
+  Debug
+*/
+addCommand(cmdPrefix + "debug", async (source, args) => {
+  let html = await loadHTML("debug");
+  jsRP().onClient(source, "nui", "addHTML", ["jsrp-admin-debug", html]);
+  emitNet("jsrp-admin:debug", source); //request on client tick info
+});
+
+onRequest(resource, "debug-player", (player) => {
+  console.log(player);
+  return;
 });

@@ -18,3 +18,18 @@ const onRequest = (name, action, cb) => {
 };
 CFG.core.onRequest = onRequest;
 // exports("onRequest", onRequest);
+
+const onClient = (client, module, fn, args) => {
+  emitNet("jsrp:onClient", client, {
+    module,
+    fn,
+    args,
+  });
+  return new Promise((resolve) => {
+    onNet(`jsrp:onClient:response`, (res) => {
+      resolve(res);
+    });
+  });
+};
+
+CFG.core.onClient = onClient;

@@ -10,3 +10,9 @@ const request = (resource, action, args = []) => {
   });
 };
 CFG.core.request = request;
+
+onNet(`jsrp:onClient`, async (res) => {
+  const { module, fn, args } = res;
+  let response = await getModule(module)[fn](...args);
+  emitNet("jsrp:onClient:response", response);
+});

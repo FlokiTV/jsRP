@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-8ca135a0.js",
+    "file": "start-95d4fb47.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -15,13 +15,12 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-718dc83f.js",
+    "file": "pages/__layout.svelte-03175adf.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-92fe9422.js",
-      "_jsrp-nui-488a601f.js",
       "_navigation-0e6511d1.js",
       "_singletons-d1fb5791.js"
     ],
@@ -50,13 +49,12 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-09e5b77a.js",
+    "file": "pages/index.svelte-906c92c2.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-92fe9422.js",
-      "_jsrp-nui-488a601f.js",
       "_navigation-0e6511d1.js",
       "_singletons-d1fb5791.js"
     ]
@@ -66,12 +64,6 @@
   },
   "_singletons-d1fb5791.js": {
     "file": "chunks/singletons-d1fb5791.js"
-  },
-  "_jsrp-nui-488a601f.js": {
-    "file": "chunks/jsrp-nui-488a601f.js",
-    "imports": [
-      "_navigation-0e6511d1.js"
-    ]
   },
   "_navigation-0e6511d1.js": {
     "file": "chunks/navigation-0e6511d1.js",

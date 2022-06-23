@@ -14,4 +14,20 @@ const spawnToLocation = (spawn = false) => {
   ClearPlayerWantedLevel(PlayerId());
 };
 CFG.core.spawnToLocation = spawnToLocation;
-// exports("spawnToLocation", spawnToLocation);
+
+const getPedRotation = (id = false) => {
+  let ped = id || PlayerPedId();
+  let head = GetEntityHeading(ped);
+  head = (((head % 360) - 360) % 360) * -1;
+  return head;
+};
+CFG.core.getPedRotation = getPedRotation;
+
+const getCamRotation = (anticlock_wise = false) => {
+  let head = getPedRotation();
+  let cam = GetGameplayCamRelativeHeading();
+  let rotation = ((cam % 360) - 360) % 360;
+  if (anticlock_wise) return (((rotation + head) % 360) - 360) % 360;
+  else return ((((rotation + head) % 360) + 360) % 360) * -1;
+};
+CFG.core.getCamRotation = getCamRotation;

@@ -53,7 +53,7 @@ setModule("user", "setAttr", setAttr);
 const getAttr = (nId, key) => {
   let user = get(nId);
   // if (!user.attr) user.attr = {};
-  return user.attr[key];
+  return user.attr[key] || false;
 };
 setModule("user", "getAttr", getAttr);
 

@@ -1,11 +1,47 @@
-<div class="absolute top-1/2 right-10 p-2 bg-black text-white">
-  <div>Player info</div>
-  <div>position: x y z</div>
-  <div>position: x y z</div>
+<div class="absolute top-10 right-10 p-4 bg-black text-white">
+  <div class="uppercase w-40 text-center">Player info</div>
+  <div class="flex justify-between">
+    <span>player</span>
+    <span data-bind="player">0</span>
+  </div>
+  <div class="flex justify-between">
+    <span>ped</span>
+    <span data-bind="ped">0</span>
+  </div>
+  <div class="flex justify-between">
+    <span>position</span>
+    <span data-bind="position">x y z</span>
+  </div>
+  <div class="flex justify-between">
+    <span>camera</span>
+    <span data-bind="camera">x y z</span>
+  </div>
+  <div class="flex justify-between">
+    <span>rotation</span>
+    <span data-bind="rotation">0</span>
+  </div>
+  <div class="flex justify-between">
+    <span>headind</span>
+    <span data-bind="head">0</span>
+  </div>
 </div>
 <script>
+  const setData = (name, value) => {
+    let el = document.querySelector(`[data-bind="${name}"]`);
+    if (el) {
+      el.innerHTML = value;
+    }
+  };
   console.log("init debug");
   window.on("debug-player", (data) => {
-    console.log(data);
+    setData("player", data.player);
+    setData("ped", data.ped);
+    setData("head", data.head.toFixed(2));
+    setData(
+      "position",
+      `x: ${data.coords[0].toFixed(2)}<br>y: ${data.coords[1].toFixed(2)}<br>z: ${data.coords[2].toFixed(2)} `
+    );
+    setData("camera", `x: ${data.cam[0].toFixed(2)}<br>y: ${data.cam[1].toFixed(2)}<br>z: ${data.cam[2].toFixed(2)} `);
+    setData("rotation", data.rotation.toFixed(2));
   });
 </script>

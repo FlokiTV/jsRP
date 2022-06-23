@@ -6,7 +6,9 @@ description "jsRP Admin"
 version '1.0.0'
 
 client_script {
-    "client/*.js"
+    "client/index.js",
+    "client/nc.js",
+    "client/nui.js"
 }
 
 server_script {

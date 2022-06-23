@@ -29,6 +29,7 @@ const UI_SET = (open) => {
 RegisterCommand("hud", (source, args) => {
   console.log("[hud] " + source);
   UI_TOGGLE();
+  SetNuiFocus(false);
 });
 
 const fn = {

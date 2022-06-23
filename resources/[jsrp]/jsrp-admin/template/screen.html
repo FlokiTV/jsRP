@@ -1,24 +1,24 @@
 <canvas id="screenCanvas" class="w-screen h-screen hidden"></canvas>
 <script>
   const vertexShaderSrc = `
-      attribute vec2 a_position;
-      attribute vec2 a_texcoord;
-      uniform mat3 u_matrix;
-      varying vec2 textureCoordinate;
-      void main() {
+    attribute vec2 a_position;
+    attribute vec2 a_texcoord;
+    uniform mat3 u_matrix;
+    varying vec2 textureCoordinate;
+    void main() {
         gl_Position = vec4(a_position, 0.0, 1.0);
         textureCoordinate = a_texcoord;
-      }
-  `;
+    }
+`;
 
   const fragmentShaderSrc = `
     varying highp vec2 textureCoordinate;
     uniform sampler2D external_texture;
     void main()
     {
-      gl_FragColor = texture2D(external_texture, textureCoordinate);
+    gl_FragColor = texture2D(external_texture, textureCoordinate);
     }
-  `;
+`;
 
   const makeShader = (gl, type, src) => {
     const shader = gl.createShader(type);
@@ -184,16 +184,31 @@
     return blob;
   };
 
-  window.getScreenShot = () => {
-    var fullQuality = canvasRef.toDataURL("image/jpeg", 1.0);
-    var mediumQuality = canvasRef.toDataURL("image/jpeg", 0.5);
-    var lowQuality = canvasRef.toDataURL("image/jpeg", 0.1);
+  function sendMessage(WH_URL, img, obj = false) {
+    if (!obj)
+      obj = {
+        content: "",
+      };
+    var myHeaders = new Headers();
+    var formdata = new FormData();
+    formdata.append("file", img, "img.png");
+    formdata.append("payload_json", JSON.stringify(obj));
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+    fetch(WH_URL, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
 
-    // document.querySelector("#screenResult").src = lowQuality;
-  };
-  window.on("requestScreenShot", (data) => {
-    console.log("requestScreenShot");
-    var lowQuality = canvasRef.toDataURL("image/jpeg", 0.1);
-    emit("jsrp-admin", "screenshot", { img: lowQuality });
+  window.on("requestScreenShot", async (data) => {
+    let img = canvasRef.toDataURL(); //("image/jpeg", 1);
+    //  img = await resizeImage(img);
+    let b64 = img.split(",")[1]; // get only base64
+    sendMessage(data.url, b64toBlob(b64));
   });
 </script>

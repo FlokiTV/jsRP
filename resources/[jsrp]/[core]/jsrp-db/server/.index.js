@@ -1,5 +1,6 @@
 /// <reference types="@citizenfx/server" />
-
+const resource = GetCurrentResourceName();
+const root = GetResourcePath(resource);
 const { Sequelize, DataTypes } = require("sequelize");
 const jsRP = exports.jsrp.jsRP();
 

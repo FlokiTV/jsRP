@@ -33,7 +33,7 @@ const addCSS = (css) => {
 };
 NUI.addCSS = addCSS;
 
-const addHTML = (name, html, eval = false) => {
+const addHTML = (name, html, eval = true) => {
   SendNUIMessage({
     addHTML: {
       name,
@@ -41,6 +41,7 @@ const addHTML = (name, html, eval = false) => {
       eval,
     },
   });
+  return "add html " + name + " eval scripts " + eval;
 };
 NUI.addHTML = addHTML;
 
