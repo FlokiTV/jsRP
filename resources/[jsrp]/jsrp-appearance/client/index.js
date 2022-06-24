@@ -30,19 +30,19 @@ const spawnLocations = {
   },
 };
 
-const setDefaultPed = (onPedLoad = false) => {
-  let model = GetHashKey("mp_m_freemode_01");
-  RequestModel(model);
-  let load = setInterval(() => {
-    if (HasModelLoaded(model)) {
-      SetPlayerModel(PlayerId(), model);
-      SetPedDefaultComponentVariation(PlayerPedId());
-      SetModelAsNoLongerNeeded(model);
-      clearInterval(load);
-      if (onPedLoad) onPedLoad();
-    }
-  }, 50);
-};
+// const setDefaultPed = (onPedLoad = false) => {
+//   let model = GetHashKey("mp_m_freemode_01");
+//   RequestModel(model);
+//   let load = setInterval(() => {
+//     if (HasModelLoaded(model)) {
+//       SetPlayerModel(PlayerId(), model);
+//       SetPedDefaultComponentVariation(PlayerPedId());
+//       SetModelAsNoLongerNeeded(model);
+//       clearInterval(load);
+//       if (onPedLoad) onPedLoad();
+//     }
+//   }, 50);
+// };
 
-PED.setDefaultPed = setDefaultPed;
-jsRP().setObjectModule("ped", PED);
+// PED.setDefaultPed = setDefaultPed;
+// jsRP().setObjectModule("ped", PED);

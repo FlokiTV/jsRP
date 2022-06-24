@@ -31,6 +31,13 @@ const getIdByLicense = async (license) => {
 };
 ID.getIdByLicense = getIdByLicense;
 
+const nId = async (player) => {
+  const ids = jsRP().parseIdentifiers(player);
+  const nId = await getIdByLicense(ids.license);
+  return nId;
+};
+ID.nId = nId;
+
 const create = async (userId, type, value) => {
   let id = await db("create", { userId, type, value });
   return id;
