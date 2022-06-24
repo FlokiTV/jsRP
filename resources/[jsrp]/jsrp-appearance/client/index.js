@@ -12,7 +12,7 @@ const CFG = {
 const PED = {};
 
 const APConfig = {
-  ped: true,
+  ped: false,
   headBlend: true,
   faceFeatures: true,
   headOverlays: true,
