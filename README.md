@@ -44,23 +44,4 @@ This framework is still under development and may demonstrate instabilities. Wai
 
 ## Configuration steps
 
-### jsrp-db
-
-`server.cfg`
-
-```lua
-setr jsrp-db:host "mysql.host.net"
-setr jsrp-db:database "database"
-setr jsrp-db:username "username"
-setr jsrp-db:password "password"
-```
-
-You can disable jsrp-db and jsrp-login to start without database
-
-### jsrp-ws
-
-`server.cfg`
-
-```lua
-setr jsrp-ws:port 30130
-```
+### [TODO]

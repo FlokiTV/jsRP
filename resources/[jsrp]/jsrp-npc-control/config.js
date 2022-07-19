@@ -1,19 +1,19 @@
 module.exports = {
   vehicles: {
-    density: 1,
-    random: 1,
+    density: 0,
+    random: 0,
     parked: 1,
   },
   peds: {
-    density: 1,
-    random: [1, 1],
+    density: 0,
+    random: [0, 0],
   },
-  boats: true,
-  trucks: true,
+  boats: false,
+  trucks: false,
   coops: {
-    create_random: true,
-    create_on_scenario: true,
-    create_out_scenario: true,
+    create_random: false,
+    create_on_scenario: false,
+    create_out_scenario: false,
   },
-  no_wanted: false, // disable wanted for player
+  no_wanted: true, // disable wanted for player
 };

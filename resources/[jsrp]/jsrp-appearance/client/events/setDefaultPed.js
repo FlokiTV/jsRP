@@ -30,11 +30,11 @@ const doneCustomization = async (appearance = false) => {
 
 const spawnPed = () => {
   let ped = PlayerPedId();
+  let coords = GetEntityCoords(PlayerPedId(), true);
+  NetworkResurrectLocalPlayer(coords, true, true, false);
   clearInterval(visibleTick);
   SetEntityVisible(ped, true);
   SetEntityCoords(ped, spawnLocations["safe"].x, spawnLocations["safe"].y, spawnLocations["safe"].z);
-  let coords = GetEntityCoords(PlayerPedId(), true);
-  NetworkResurrectLocalPlayer(coords, true, true, false);
   SetPlayerInvincible(PlayerPedId(), false);
   ClearPedBloodDamage(PlayerPedId());
 };
