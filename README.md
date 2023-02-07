@@ -1,3 +1,8 @@
+# this repository has been moved to https://github.com/Floki-Community/jsRP
+
+
+
+
 # jsRP
 
 Javascript powered FiveM RolePlay Base 🎮
